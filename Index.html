@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All About Corporate Valuation - Calculators</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #005A9C; /* Deep blue from cover */
+            --secondary-color: #007bff; /* A slightly lighter, vibrant blue */
+            --accent-color: #4cb8c4;  /* Teal/cyan accent from cover's people icons */
+            --text-color-dark: #2c3e50; /* Dark grayish blue */
+            --text-color-light: #ffffff;
+            --bg-color-light: #f0f4f8; /* Very light blue-gray */
+            --bg-color-white: #ffffff;
+            --border-color: #dee2e6;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --success-bg: #e9f7ef;
+            --success-border: #c3e6cb;
+            --success-text: #155724;
+            --error-bg: #f8d7da;
+            --error-border: #f5c6cb;
+            --error-text: #721c24;
+            --premium-bg-light: #fff8e1; /* Light yellow for premium mockups */
+            --premium-border: #ffecb3;
+            --premium-text: #8d6e63; /* Darker text for premium items */
+            --premium-tab-color: #c89f58; /* Gold-ish for premium tabs */
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color-light);
+            color: var(--text-color-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+
+        /* Header */
+        .app-header {
+            background-color: var(--primary-color);
+            color: var(--text-color-light);
+            padding: 20px 30px;
+            width: 100%;
+            box-shadow: 0 3px 6px var(--shadow-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            flex-shrink: 0;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .book-cover-img {
+            height: 80px;
+            width: auto;
+            margin-right: 20px;
+            border-radius: 4px;
+            border: 2px solid var(--accent-color);
+        }
+
+        .header-center {
+            flex-grow: 1;
+            text-align: left;
+        }
+
+        .app-header h1 {
+            margin: 0 0 2px 0;
+            font-size: 1.6em;
+            font-weight: 700;
+        }
+        .app-header .subtitle {
+            font-size: 0.85em;
+            margin: 0 0 2px 0;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+        .app-header .author {
+            font-size: 0.8em;
+            font-style: italic;
+            opacity: 0.8;
+            margin: 0;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+        .header-right .auth-link {
+            color: var(--text-color-light);
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 500;
+            margin-right: 15px;
+            padding: 8px 12px;
+            border: 1px solid var(--accent-color);
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .header-right .auth-link:hover {
+            background-color: var(--accent-color);
+            color: var(--text-color-dark);
+        }
+        .user-icon-placeholder {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-color-dark);
+            font-weight: bold;
+            font-size: 0.8em;
+        }
+
+
+        /* Main Navigation */
+        .main-nav {
+            background-color: var(--text-color-dark);
+            padding: 10px 0;
+            text-align: center;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .main-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .main-nav li {
+            margin: 5px 10px;
+        }
+        .main-nav a {
+            color: var(--text-color-light);
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .main-nav a:hover, .main-nav a.active-nav {
+            background-color: var(--accent-color);
+            color: var(--text-color-dark);
+        }
+
+        /* Page Body Wrapper for Sticky Footer */
+        .page-body-wrapper {
+            flex-grow: 1;
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative; 
+            padding: 0; 
+            text-align: left; 
+            color: var(--text-color-light); 
+            background-image: url('https://images2.imgbox.com/96/12/xw2QFYA8_o.png'); /* Updated Hero Image URL */
+            background-size: cover;
+            background-position: center;
+            min-height: 350px; 
+            display: flex; 
+            align-items: center; 
+        }
+
+        .hero-content-overlay {
+            position: relative; 
+            z-index: 2; 
+            padding: 30px 40px; 
+            max-width: 500px; /* Adjusted max-width for better fit */
+            background-color: rgba(44, 62, 80, 0.65); /* Darker overlay for better contrast */
+            border-radius: 8px; 
+            margin-left: 5%; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .hero-section h2 {
+            margin-top: 0;
+            font-size: 2.2em; 
+            color: var(--text-color-light); 
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4); /* Added text shadow for readability */
+        }
+        .hero-section p {
+            font-size: 1.1em;
+            color: var(--text-color-light); 
+            margin-bottom: 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3); /* Added text shadow */
+        }
+
+
+        /* Main Content Container */
+        .container {
+            background: var(--bg-color-white);
+            padding: 20px 30px 30px 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px var(--shadow-color);
+            width: 100%;
+            max-width: 750px;
+            margin: 30px auto;
+            box-sizing: border-box;
+        }
+
+        /* Tab Styles for Calculators */
+        .tab-navigation {
+            display: flex;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--border-color);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .tab-button {
+            padding: 12px 15px;
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+            font-size: 0.90em; 
+            font-weight: 600;
+            color: var(--primary-color);
+            border-bottom: 3px solid transparent;
+            margin-right: 2px;
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .tab-button.active {
+            color: var(--secondary-color);
+            border-bottom-color: var(--secondary-color);
+        }
+        .tab-button:hover {
+            color: var(--secondary-color);
+        }
+        .tab-button.premium-mockup-tab {
+            color: var(--premium-tab-color);
+        }
+         .tab-button.premium-mockup-tab.active {
+            border-bottom-color: var(--premium-tab-color);
+        }
+        .premium-badge {
+            font-size: 0.7em;
+            color: var(--premium-tab-color);
+            margin-left: 4px;
+            vertical-align: super;
+        }
+
+
+        .calculator-content, .page-content {
+            display: none;
+        }
+        .calculator-content.active, .page-content.active {
+            display: block;
+        }
+
+        /* General Calculator/Page Section Styles */
+        .calculator-section h2, .page-section h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.6em;
+        }
+         .page-section h3 {
+            color: var(--primary-color);
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+        }
+        .page-section h4 {
+            color: var(--text-color-dark);
+            font-size: 1.1em;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+        .calculator-section .description, .page-section .description {
+            text-align: center;
+            font-size: 0.95em;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        .calculator-section .formula {
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+            font-weight: 600;
+            background-color: #f9f9f9;
+            padding: 8px;
+            border-radius: 4px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: var(--text-color-dark);
+        }
+        .input-group input[type="number"], .input-group input[type="text"] {
+            width: calc(100% - 24px);
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1em;
+            background-color: #fdfdfe;
+            box-sizing: border-box;
+        }
+        .input-group input[type="number"]:focus, .input-group input[type="text"]:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+            outline: none;
+        }
+        .input-group .sub-label {
+            font-size: 0.8em;
+            color: #777;
+            margin-left: 5px;
+        }
+
+
+        .calculate-button {
+            display: block;
+            width: 100%;
+            padding: 12px 15px;
+            background-color: var(--secondary-color);
+            color: var(--text-color-light);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        .calculate-button:hover {
+            background-color: var(--primary-color);
+        }
+         .calculate-button.premium-button {
+            background-color: var(--premium-tab-color);
+        }
+        .calculate-button.premium-button:hover {
+            background-color: #b08d4a;
+        }
+
+
+        .result-box {
+            margin-top: 20px;
+            padding: 18px;
+            background-color: var(--success-bg);
+            border: 1px solid var(--success-border);
+            border-left: 5px solid var(--success-border);
+            border-radius: 6px;
+            text-align: center;
+        }
+        .result-box h3 {
+            margin: 0;
+            color: var(--success-text);
+            font-size: 1.2em;
+        }
+        .result-box h3 span {
+            font-weight: 700;
+        }
+
+        .error-message-box {
+            color: var(--error-text);
+            background-color: var(--error-bg);
+            border: 1px solid var(--error-border);
+            border-left: 5px solid var(--error-border);
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: 500;
+            text-align: center;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .notes-source {
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            font-size: 0.9em;
+        }
+        .notes-source h4 {
+            margin-top: 0;
+            color: var(--text-color-dark);
+            font-size: 1.1em;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        .notes-source ul {
+            padding-left: 18px;
+            list-style-type: disc;
+            margin-bottom: 10px;
+        }
+        .notes-source li {
+            margin-bottom: 6px;
+        }
+        .notes-source .source-ref {
+            font-style: italic;
+            color: var(--secondary-color);
+            display: block;
+            margin-top:10px;
+            font-weight: 500;
+        }
+        .premium-mockup-message {
+            background-color: var(--premium-bg-light);
+            border: 1px solid var(--premium-border);
+            color: var(--premium-text);
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.95em;
+        }
+        .premium-mockup-message p {
+            margin: 5px 0;
+        }
+        .premium-mockup-message a {
+            color: var(--secondary-color);
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .premium-mockup-message a:hover {
+            text-decoration: underline;
+        }
+
+        /* Pricing Section Styles */
+        .pricing-tiers-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .pricing-tier-box {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            background-color: var(--bg-color-white);
+            flex-grow: 1;
+            flex-basis: calc(50% - 30px);
+            min-width: 280px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-tier-box h3 {
+            color: var(--primary-color);
+            font-size: 1.5em;
+            margin-top: 0;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .pricing-tier-box .tier-price {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: var(--secondary-color);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .pricing-tier-box .tier-price span {
+            font-size: 0.7em;
+            font-weight: 400;
+            color: #777;
+        }
+
+        .pricing-tier-box ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        .pricing-tier-box ul li {
+            padding-left: 25px;
+            position: relative;
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+        .pricing-tier-box ul li::before {
+            content: '✔';
+            color: var(--success-text);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .pricing-tier-box ul ul {
+            padding-left: 20px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        .pricing-tier-box ul ul li::before {
+            content: '›';
+            color: var(--secondary-color);
+        }
+
+        .pricing-tier-box .calculate-button {
+            margin-top: auto;
+        }
+        .pricing-tier-box.premium-tier {
+            border-color: var(--secondary-color);
+            border-width: 2px;
+        }
+        .pricing-tier-box.premium-tier h3 {
+            color: var(--secondary-color);
+        }
+
+        /* Case Study Section Styles */
+        .case-study-item {
+            background-color: #f9f9f9;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+        .case-study-item h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.3em;
+        }
+        .case-study-item .case-badge {
+            font-size: 0.8em;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: var(--text-color-light);
+            margin-left: 10px;
+        }
+        .case-study-item .free-badge {
+            background-color: var(--success-text);
+        }
+        .case-study-item .premium-badge-case {
+            background-color: var(--premium-tab-color);
+        }
+        .case-study-item p {
+            font-size: 0.95em;
+            margin-bottom: 15px;
+        }
+        .case-study-item .view-case-button {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: var(--secondary-color);
+            color: var(--text-color-light);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        .case-study-item .view-case-button:hover {
+            background-color: var(--primary-color);
+        }
+        .case-study-item .view-case-button.premium {
+             background-color: var(--premium-tab-color);
+        }
+         .case-study-item .view-case-button.premium:hover {
+            background-color: #b08d4a;
+        }
+
+
+        /* Footer */
+        .app-footer {
+            background-color: var(--text-color-dark);
+            color: #bdc3c7;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.85em;
+            width: 100%;
+            box-sizing: border-box;
+            flex-shrink: 0;
+        }
+        .app-footer .disclaimer {
+            font-size: 0.9em;
+            color: #95a5a6;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .app-header {
+                flex-direction: column;
+                padding: 15px;
+            }
+            .header-left {
+                margin-bottom: 10px;
+                justify-content: center;
+            }
+            .book-cover-img {
+                height: 100px;
+                margin-right: 0;
+            }
+            .header-center {
+                text-align: center;
+                margin-bottom: 15px;
+            }
+            .app-header h1 {
+                font-size: 1.4em;
+            }
+            .app-header .subtitle {
+                font-size: 0.8em;
+            }
+            .app-header .author {
+                font-size: 0.75em;
+            }
+            .header-right {
+                justify-content: center;
+            }
+            .header-right .auth-link {
+                font-size: 0.85em;
+            }
+            .user-icon-placeholder {
+                width: 35px;
+                height: 35px;
+            }
+            .hero-section {
+                min-height: 250px; 
+            }
+            .hero-content-overlay {
+                padding: 20px;
+                margin-left: 2%;
+                margin-right: 2%;
+            }
+            .hero-section h2 {
+                font-size: 1.8em;
+            }
+            .hero-section p {
+                font-size: 1em;
+            }
+            .pricing-tier-box {
+                flex-basis: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app-header {
+                padding: 15px 10px;
+            }
+            .book-cover-img {
+                height: 80px;
+            }
+            .app-header h1 {
+                font-size: 1.3em;
+            }
+            .header-center {
+                margin-bottom: 10px;
+            }
+            .main-nav ul {
+                flex-direction: column;
+            }
+            .main-nav li {
+                margin: 5px 0;
+            }
+            .tab-navigation {
+                font-size: 0.9em;
+            }
+            .tab-button {
+                padding: 8px 10px;
+            }
+            .hero-section {
+                min-height: 200px;
+                 padding: 20px 10px;
+            }
+             .hero-content-overlay {
+                padding: 15px;
+            }
+            .hero-section h2 {
+                font-size: 1.5em;
+            }
+            .hero-section p {
+                font-size: 0.9em;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-left">
+            <img src="https://images2.imgbox.com/d0/62/jR7d9bg9_o.jpg" alt="Book Cover - ALL ABOUT CORPORATE VALUATION" class="book-cover-img">
+        </div>
+        <div class="header-center">
+            <h1>ALL ABOUT CORPORATE VALUATION</h1>
+            <p class="subtitle">MEMETAKAN, MENCIPTAKAN, MENGUKUR, DAN MEREALISASIKAN NILAI PERUSAHAAN</p>
+            <p class="author">by IRWAN DJAJA</p>
+        </div>
+        <div class="header-right">
+            <a href="#" class="auth-link" onclick="alert('Sign In / Register functionality is a mockup for this demo.')">Sign In or Register</a>
+            <div class="user-icon-placeholder">
+                </div>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#" onclick="navigateTo('home', event)" class="active-nav">Home</a></li>
+            <li><a href="#" onclick="navigateTo('calculators', event)">Calculators</a></li>
+            <li><a href="#" onclick="navigateTo('learningCenter', event)">Learning Center</a></li>
+            <li><a href="#" onclick="navigateTo('videoTutorials', event)">Video Tutorials</a></li>
+            <li><a href="#" onclick="navigateTo('caseStudies', event)">Case Studies</a></li>
+            <li><a href="#" onclick="navigateTo('pricing', event)">Pricing</a></li>
+            <li><a href="#" onclick="navigateTo('about', event)">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="page-body-wrapper">
+        <section class="hero-section">
+            <div class="hero-content-overlay">
+                <h2>Master Corporate Valuation</h2>
+                <p>Unlock the tools and knowledge to accurately value businesses, guided by the expertise of Irwan Djaja.</p>
+            </div>
+        </section>
+
+        <main class="container">
+            <section id="home" class="page-content active">
+                <h2>Welcome to Corporate Valuation Interactive!</h2>
+                <p class="description">
+                    This website is a companion to the book "All About Corporate Valuation" by Irwan Djaja.
+                    Explore valuation concepts, use interactive calculators, and deepen your understanding of how to
+                    map, create, measure, and realize company value.
+                </p>
+                <h3>Key Features (Phase 5 Update):</h3>
+                <ul>
+                    <li>Interactive Valuation Calculators (Free & Premium Mockups).</li>
+                    <li>Learning Center: Expanded Glossary, Detailed Methodology Summaries (Free/Premium Teasers), Indonesian Context.</li>
+                    <li>Video Tutorials: More specific placeholder video titles.</li>
+                    <li>Interactive Case Studies: More descriptive placeholders.</li>
+                    <li>Pricing Page: Detailed tier descriptions.</li>
+                </ul>
+                <p>Navigate using the menu above to explore the available tools and resources.</p>
+            </section>
+
+            <section id="calculators" class="page-content">
+                <div class="tab-navigation">
+                    <button class="tab-button active" onclick="openCalculatorTab('peRatioCalc', event.currentTarget)">P/E Ratio</button>
+                    <button class="tab-button" onclick="openCalculatorTab('ddmCalc', event.currentTarget)">DDM</button>
+                    <button class="tab-button" onclick="openCalculatorTab('bvpsCalc', event.currentTarget)">BVPS</button>
+                    <button class="tab-button" onclick="openCalculatorTab('noplatCalc', event.currentTarget)">NOPLAT</button>
+                    <button class="tab-button" onclick="openCalculatorTab('roicCalc', event.currentTarget)">ROIC</button>
+                    <button class="tab-button" onclick="openCalculatorTab('capmCalc', event.currentTarget)">CAPM (Ke)</button>
+                    <button class="tab-button" onclick="openCalculatorTab('waccCalc', event.currentTarget)">WACC</button>
+                    <button class="tab-button premium-mockup-tab" onclick="openCalculatorTab('advDcfCalc', event.currentTarget)">Adv. DCF<span class="premium-badge">★</span></button>
+                    <button class="tab-button premium-mockup-tab" onclick="openCalculatorTab('evaCalc', event.currentTarget)">EVA<span class="premium-badge">★</span></button>
+                    <button class="tab-button premium-mockup-tab" onclick="openCalculatorTab('apvCalc', event.currentTarget)">APV<span class="premium-badge">★</span></button>
+                    <button class="tab-button premium-mockup-tab" onclick="openCalculatorTab('evEbitCalc', event.currentTarget)">EV/EBIT<span class="premium-badge">★</span></button>
+                    <button class="tab-button premium-mockup-tab" onclick="openCalculatorTab('evEbitdaCalc', event.currentTarget)">EV/EBITDA<span class="premium-badge">★</span></button>
+                    <button class="tab-button premium-mockup-tab" onclick="openCalculatorTab('psCalc', event.currentTarget)">P/S<span class="premium-badge">★</span></button>
+                    <button class="tab-button premium-mockup-tab" onclick="openCalculatorTab('evsCalc', event.currentTarget)">EV/S<span class="premium-badge">★</span></button>
+                    <button class="tab-button premium-mockup-tab" onclick="openCalculatorTab('pbCalc', event.currentTarget)">P/B<span class="premium-badge">★</span></button>
+                </div>
+
+                <div id="peRatioCalc" class="calculator-content active calculator-section">
+                    <h2>P/E Ratio Calculator</h2>
+                    <p class="description">Calculates the Price-to-Earnings ratio.</p>
+                    <p class="formula">P/E Ratio = Market Price per Share / Earnings per Share (EPS)</p>
+                    <div class="input-group">
+                        <label for="peMarketPrice">Market Price per Share ($):</label>
+                        <input type="number" id="peMarketPrice" step="0.01" placeholder="e.g., 50.00">
+                    </div>
+                    <div class="input-group">
+                        <label for="peEps">Earnings per Share (EPS) ($):</label>
+                        <input type="number" id="peEps" step="0.01" placeholder="e.g., 2.50">
+                    </div>
+                    <button class="calculate-button" onclick="calculatePERatio()">Calculate P/E Ratio</button>
+                    <div id="peResult" class="result-box" style="display: none;">
+                        <h3>P/E Ratio: <span id="peCalculatedRatio"></span></h3>
+                    </div>
+                    <div id="peErrorMessage" class="error-message-box"></div>
+                    <div class="notes-source">
+                        <h4>Notes & Source (from "Corporate Valuation"):</h4>
+                        <ul>
+                            <li>Indicates how much investors pay per dollar of earnings.</li>
+                            <li>Not meaningful if EPS is zero or negative.</li>
+                        </ul>
+                        <p class="source-ref">Reference: Chapter 15, pages 252-254.</p>
+                    </div>
+                </div>
+
+                <div id="ddmCalc" class="calculator-content calculator-section">
+                    <h2>DDM (Constant Growth) Calculator</h2>
+                    <p class="description">Estimates intrinsic stock value based on constantly growing dividends.</p>
+                    <p class="formula">P₀ = D₁ / (kₑ - g)</p>
+                    <div class="input-group">
+                        <label for="ddmCurrentDividend">Current Dividend (D₀) (Optional):</label>
+                        <input type="number" id="ddmCurrentDividend" step="0.01" placeholder="e.g., 2.00">
+                    </div>
+                    <div class="input-group">
+                        <label for="ddmExpectedDividend">Expected Dividend Next Year (D₁):</label>
+                        <input type="number" id="ddmExpectedDividend" step="0.01" placeholder="e.g., 2.10 (Auto-calculated if D₀ & g given)">
+                    </div>
+                    <div class="input-group">
+                        <label for="ddmCostOfEquity">Cost of Equity (kₑ) (decimal, e.g., 0.12 for 12%):</label>
+                        <input type="number" id="ddmCostOfEquity" step="0.001" placeholder="e.g., 0.12">
+                    </div>
+                    <div class="input-group">
+                        <label for="ddmGrowthRate">Dividend Growth Rate (g) (decimal, e.g., 0.05 for 5%):</label>
+                        <input type="number" id="ddmGrowthRate" step="0.001" placeholder="e.g., 0.05">
+                    </div>
+                    <button class="calculate-button" onclick="calculateDDMValue()">Calculate Intrinsic Value</button>
+                    <div id="ddmResult" class="result-box" style="display: none;">
+                        <h3>Intrinsic Value (P₀): <span id="ddmCalculatedValue"></span></h3>
+                    </div>
+                    <div id="ddmErrorMessage" class="error-message-box"></div>
+                    <div class="notes-source">
+                        <h4>Notes & Source (from "Corporate Valuation"):</h4>
+                        <ul>
+                            <li>Assumes dividends grow at a constant rate (g) indefinitely.</li>
+                            <li>Growth rate (g) must be less than the cost of equity (kₑ).</li>
+                        </ul>
+                        <p class="source-ref">Reference: Chapter 8, page 135.</p>
+                    </div>
+                </div>
+
+                <div id="bvpsCalc" class="calculator-content calculator-section">
+                    <h2>Book Value per Share (BVPS) Calculator</h2>
+                    <p class="description">Calculates the book value attributable to each common share.</p>
+                    <p class="formula">BVPS = (Total Equity - Preferred Equity) / Common Shares Outstanding</p>
+                    <div class="input-group">
+                        <label for="bvpsTotalEquity">Total Shareholders' Equity ($):</label>
+                        <input type="number" id="bvpsTotalEquity" step="0.01" placeholder="e.g., 1000000">
+                    </div>
+                    <div class="input-group">
+                        <label for="bvpsPreferredEquity">Preferred Equity ($) (Optional, enter 0 if none):</label>
+                        <input type="number" id="bvpsPreferredEquity" step="0.01" placeholder="e.g., 100000" value="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="bvpsCommonShares">Number of Common Shares Outstanding:</label>
+                        <input type="number" id="bvpsCommonShares" step="1" placeholder="e.g., 50000">
+                    </div>
+                    <button class="calculate-button" onclick="calculateBVPS()">Calculate BVPS</button>
+                    <div id="bvpsResult" class="result-box" style="display: none;">
+                        <h3>Book Value per Share: <span id="bvpsCalculatedValue"></span></h3>
+                    </div>
+                    <div id="bvpsErrorMessage" class="error-message-box"></div>
+                    <div class="notes-source">
+                        <h4>Notes & Source (from "Corporate Valuation"):</h4>
+                        <ul>
+                            <li>BVPS represents the net asset value on a per-share basis.</li>
+                            <li>Key for the Price-to-Book (P/B) Value multiple.</li>
+                        </ul>
+                        <p class="source-ref">Reference: Chapter 20, page 285.</p>
+                    </div>
+                </div>
+
+                <div id="noplatCalc" class="calculator-content calculator-section">
+                    <h2>NOPLAT Calculator</h2>
+                    <p class="description">Calculates Net Operating Profit Less Adjusted Tax.</p>
+                    <p class="formula">NOPLAT = EBIT – Cash Taxes on EBIT</p>
+                    <div class="input-group">
+                        <label for="noplatEbit">Earnings Before Interest & Tax (EBIT) ($):</label>
+                        <input type="number" id="noplatEbit" step="0.01" placeholder="e.g., 100000">
+                    </div>
+                    <div class="input-group">
+                        <label for="noplatCashTaxes">Cash Taxes on EBIT ($):</label>
+                        <input type="number" id="noplatCashTaxes" step="0.01" placeholder="e.g., 25000">
+                    </div>
+                    <p style="text-align:center; font-size:0.9em; margin:10px 0;"><em>Alternatively, use detailed inputs based on PT Karang Herbal case:</em></p>
+                     <div class="input-group">
+                        <label for="noplatPBT">Profit Before Tax ($):</label>
+                        <input type="number" id="noplatPBT" step="0.01" placeholder="e.g., 8663">
+                    </div>
+                    <div class="input-group">
+                        <label for="noplatIntExp">Interest Expenses ($) <span class="sub-label">(Add back)</span>:</label>
+                        <input type="number" id="noplatIntExp" step="0.01" placeholder="e.g., 12650">
+                    </div>
+                    <div class="input-group">
+                        <label for="noplatIntInc">Interest Income ($) <span class="sub-label">(Subtract)</span>:</label>
+                        <input type="number" id="noplatIntInc" step="0.01" placeholder="e.g., 450">
+                    </div>
+                     <div class="input-group">
+                        <label for="noplatNonOpInc">Non-Operating Income ($) <span class="sub-label">(Subtract if included in PBT to get to operating profit)</span>:</label>
+                        <input type="number" id="noplatNonOpInc" step="0.01" placeholder="e.g., 3500">
+                    </div>
+                    <div class="input-group">
+                        <label for="noplatTaxProv">Tax Provision from Income Statement ($):</label>
+                        <input type="number" id="noplatTaxProv" step="0.01" placeholder="e.g., 2166">
+                    </div>
+                     <div class="input-group">
+                        <label for="noplatTaxShield">Tax Shield on Interest Expense ($) <span class="sub-label">(Add to tax provision)</span>:</label>
+                        <input type="number" id="noplatTaxShield" step="0.01" placeholder="e.g., 3163">
+                    </div>
+                     <div class="input-group">
+                        <label for="noplatTaxOnIntInc">Tax on Interest Income ($) <span class="sub-label">(Subtract from tax provision)</span>:</label>
+                        <input type="number" id="noplatTaxOnIntInc" step="0.01" placeholder="e.g., 113">
+                    </div>
+                     <div class="input-group">
+                        <label for="noplatTaxOnNonOpInc">Tax on Non-Operating Income ($) <span class="sub-label">(Subtract from tax provision)</span>:</label>
+                        <input type="number" id="noplatTaxOnNonOpInc" step="0.01" placeholder="e.g., 875">
+                    </div>
+
+                    <button class="calculate-button" onclick="calculateNOPLAT()">Calculate NOPLAT</button>
+                    <div id="noplatResult" class="result-box" style="display: none;">
+                        <h3>NOPLAT: <span id="noplatCalculatedValue"></span></h3>
+                    </div>
+                    <div id="noplatErrorMessage" class="error-message-box"></div>
+                    <div class="notes-source">
+                        <h4>Notes & Source (from "Corporate Valuation"):</h4>
+                        <ul>
+                            <li>Represents the profit from core operations available to all investors after adjusting for taxes.</li>
+                            <li>A key input for FCF and ROIC calculations.</li>
+                        </ul>
+                        <p class="source-ref">Reference: Chapter 5, page 176.</p>
+                    </div>
+                </div>
+
+                <div id="roicCalc" class="calculator-content calculator-section">
+                    <h2>ROIC Calculator</h2>
+                    <p class="description">Calculates Return on Invested Capital.</p>
+                    <p class="formula">ROIC = NOPLAT / Invested Capital (Beginning of Year)</p>
+                    <div class="input-group">
+                        <label for="roicNoplat">NOPLAT ($) (Calculated from NOPLAT tab or input directly):</label>
+                        <input type="number" id="roicNoplat" step="0.01" placeholder="e.g., 15985">
+                    </div>
+                    <div class="input-group">
+                        <label for="roicInvestedCapital">Invested Capital (Beginning of Year) ($):</label>
+                        <input type="number" id="roicInvestedCapital" step="0.01" placeholder="e.g., 144624">
+                    </div>
+                    <button class="calculate-button" onclick="calculateROIC()">Calculate ROIC</button>
+                    <div id="roicResult" class="result-box" style="display: none;">
+                        <h3>ROIC: <span id="roicCalculatedValue"></span>%</h3>
+                    </div>
+                    <div id="roicErrorMessage" class="error-message-box"></div>
+                    <div class="notes-source">
+                        <h4>Notes & Source (from "Corporate Valuation"):</h4>
+                        <ul>
+                            <li>Measures the return generated on the capital invested in the company.</li>
+                            <li>Invested capital typically includes operating assets net of operating liabilities.</li>
+                        </ul>
+                        <p class="source-ref">Reference: Chapter 5, page 178.</p>
+                    </div>
+                </div>
+
+                <div id="capmCalc" class="calculator-content calculator-section">
+                    <h2>CAPM (Cost of Equity) Calculator</h2>
+                    <p class="description">Calculates the Cost of Equity using the Capital Asset Pricing Model.</p>
+                    <p class="formula">Kₑ = R<span style="font-size: smaller;">f</span> + β (R<span style="font-size: smaller;">m</span> - R<span style="font-size: smaller;">f</span>)</p>
+                    <div class="input-group">
+                        <label for="capmRf">Risk-Free Rate (R<span style="font-size: smaller;">f</span>) (decimal, e.g., 0.03 for 3%):</label>
+                        <input type="number" id="capmRf" step="0.001" placeholder="e.g., 0.03">
+                    </div>
+                    <div class="input-group">
+                        <label for="capmBeta">Beta (β):</label>
+                        <input type="number" id="capmBeta" step="0.01" placeholder="e.g., 1.2">
+                    </div>
+                    <div class="input-group">
+                        <label for="capmMrp">Market Risk Premium (R<span style="font-size: smaller;">m</span> - R<span style="font-size: smaller;">f</span>) (decimal, e.g., 0.06 for 6%):</label>
+                        <input type="number" id="capmMrp" step="0.001" placeholder="e.g., 0.06">
+                    </div>
+                    <button class="calculate-button" onclick="calculateCAPM()">Calculate Cost of Equity (Kₑ)</button>
+                    <div id="capmResult" class="result-box" style="display: none;">
+                        <h3>Cost of Equity (Kₑ): <span id="capmCalculatedValue"></span>%</h3>
+                    </div>
+                    <div id="capmErrorMessage" class="error-message-box"></div>
+                    <div class="notes-source">
+                        <h4>Notes & Source (from "Corporate Valuation"):</h4>
+                        <ul>
+                            <li>Estimates the required rate of return for equity investors.</li>
+                            <li>A key input for DDM and WACC.</li>
+                        </ul>
+                        <p class="source-ref">Reference: Chapter 7, page 107.</p>
+                    </div>
+                </div>
+
+                <div id="waccCalc" class="calculator-content calculator-section">
+                    <h2>WACC Calculator (Basic)</h2>
+                    <p class="description">Calculates the Weighted Average Cost of Capital (simplified).</p>
+                    <p class="formula">WACC = Kₑ * (E/V) + K<span style="font-size: smaller;">d</span> * (1-t) * (D/V)</p>
+                    <div class="input-group">
+                        <label for="waccKe">Cost of Equity (Kₑ) (decimal, from CAPM or input):</label>
+                        <input type="number" id="waccKe" step="0.001" placeholder="e.g., 0.12">
+                    </div>
+                    <div class="input-group">
+                        <label for="waccKd">Cost of Debt (K<span style="font-size: smaller;">d</span>) (pre-tax, decimal):</label>
+                        <input type="number" id="waccKd" step="0.001" placeholder="e.g., 0.06">
+                    </div>
+                    <div class="input-group">
+                        <label for="waccTaxRate">Corporate Tax Rate (t) (decimal):</label>
+                        <input type="number" id="waccTaxRate" step="0.001" placeholder="e.g., 0.25">
+                    </div>
+                    <div class="input-group">
+                        <label for="waccEquityValue">Market Value of Equity (E) ($):</label>
+                        <input type="number" id="waccEquityValue" step="0.01" placeholder="e.g., 600000">
+                    </div>
+                    <div class="input-group">
+                        <label for="waccDebtValue">Market Value of Debt (D) ($):</label>
+                        <input type="number" id="waccDebtValue" step="0.01" placeholder="e.g., 400000">
+                    </div>
+                    <button class="calculate-button" onclick="calculateWACC()">Calculate WACC</button>
+                    <div id="waccResult" class="result-box" style="display: none;">
+                        <h3>WACC: <span id="waccCalculatedValue"></span>%</h3>
+                    </div>
+                    <div id="waccErrorMessage" class="error-message-box"></div>
+                    <div class="notes-source">
+                        <h4>Notes & Source (from "Corporate Valuation"):</h4>
+                        <ul>
+                            <li>Represents the company's blended cost of capital across all sources.</li>
+                            <li>Used as the discount rate for FCFF in DCF analysis.</li>
+                            <li>This version excludes preferred stock for simplicity.</li>
+                        </ul>
+                        <p class="source-ref">Reference: Chapter 7, page 88 (initial formula).</p>
+                    </div>
+                </div>
+                
+                <div id="advDcfCalc" class="calculator-content calculator-section">
+                    <h2>Advanced DCF Valuation Tool <span class="premium-badge">★</span></h2>
+                    <p class="description">A comprehensive tool for multi-year DCF analysis.</p>
+                    <div class="premium-mockup-message">
+                        <p>✨ This Advanced DCF Valuation Tool is a premium feature! ✨</p>
+                        <p>It allows for detailed multi-year projections, sensitivity analysis, and more.</p>
+                        <p><a href="#" onclick="navigateTo('pricing', {currentTarget: document.querySelector('.main-nav a[onclick*=\'pricing\']')}); return false;">Upgrade to Premium</a> to access this and other advanced tools.</p>
+                    </div>
+                    <div class="input-group">
+                        <label for="advDcfYears">Number of Projection Years:</label>
+                        <input type="number" id="advDcfYears" placeholder="e.g., 5" disabled>
+                    </div>
+                    <button class="calculate-button premium-button" onclick="showPremiumMockupAlert('Advanced DCF Tool')">Access Tool (Premium)</button>
+                    <div class="notes-source">
+                        <h4>Notes & Source (from "Corporate Valuation"):</h4>
+                        <ul><li>Integrates FCFF projections, WACC, Terminal Value, and more.</li></ul>
+                        <p class="source-ref">Reference: Chapters 4-11.</p>
+                    </div>
+                </div>
+
+                <div id="evaCalc" class="calculator-content calculator-section">
+                    <h2>Economic Value Added (EVA) Calculator <span class="premium-badge">★</span></h2>
+                    <p class="description">Measures a company's true economic profit.</p>
+                    <p class="formula">EVA = NOPAT – (Beginning of Year Invested Capital × WACC)</p>
+                     <div class="premium-mockup-message">
+                        <p>✨ The EVA Calculator is a premium feature! ✨</p>
+                        <p><a href="#" onclick="navigateTo('pricing', {currentTarget: document.querySelector('.main-nav a[onclick*=\'pricing\']')}); return false;">Upgrade to Premium</a> for access.</p>
+                    </div>
+                    <div class="input-group">
+                        <label for="evaNopat">NOPAT ($):</label>
+                        <input type="number" id="evaNopat" step="0.01" placeholder="From NOPLAT Calc" disabled>
+                    </div>
+                    <div class="input-group">
+                        <label for="evaBoyic">Beginning of Year Invested Capital ($):</label>
+                        <input type="number" id="evaBoyic" step="0.01" placeholder="e.g., 1000000" disabled>
+                    </div>
+                    <div class="input-group">
+                        <label for="evaWacc">WACC (decimal, from WACC Calc):</label>
+                        <input type="number" id="evaWacc" step="0.001" placeholder="e.g., 0.10" disabled>
+                    </div>
+                    <button class="calculate-button premium-button" onclick="showPremiumMockupAlert('EVA Calculator')">Calculate EVA (Premium)</button>
+                    <div class="notes-source">
+                        <h4>Notes & Source (from "Corporate Valuation"):</h4>
+                        <ul><li>EVA indicates if a company is creating value above its cost of capital.</li></ul>
+                        <p class="source-ref">Reference: Chapter 12, page 212.</p>
+                    </div>
+                </div>
+                <div id="apvCalc" class="calculator-content calculator-section">
+                    <h2>Adjusted Present Value (APV) Calculator <span class="premium-badge">★</span></h2>
+                    <p class="description">Values a company by separating operating value from financing effects.</p>
+                     <div class="premium-mockup-message">
+                        <p>✨ The APV Calculator is a premium feature! ✨</p>
+                        <p><a href="#" onclick="navigateTo('pricing', {currentTarget: document.querySelector('.main-nav a[onclick*=\'pricing\']')}); return false;">Upgrade to Premium</a> for access.</p>
+                    </div>
+                    <div class="input-group">
+                        <label for="apvUnleveredFCF">PV of Unlevered Equity FCF ($):</label>
+                        <input type="number" id="apvUnleveredFCF" step="0.01" placeholder="e.g., 500000" disabled>
+                    </div>
+                    <div class="input-group">
+                        <label for="apvTaxShields">PV of Interest Tax Shields ($):</label>
+                        <input type="number" id="apvTaxShields" step="0.01" placeholder="e.g., 50000" disabled>
+                    </div>
+                    <button class="calculate-button premium-button" onclick="showPremiumMockupAlert('APV Calculator')">Calculate APV (Premium)</button>
+                    <div class="notes-source">
+                        <h4>Notes & Source (from "Corporate Valuation"):</h4>
+                        <ul><li>Useful for companies with changing capital structures or LBOs.</li></ul>
+                        <p class="source-ref">Reference: Chapter 13, page 225.</p>
+                    </div>
+                </div>
+                <div id="evEbitCalc" class="calculator-content calculator-section">
+                    <h2>EV/EBIT Multiple Calculator <span class="premium-badge">★</span></h2>
+                    <p class="description">Calculates Enterprise Value to EBIT multiple.</p>
+                     <div class="premium-mockup-message">
+                        <p>✨ The EV/EBIT Calculator is a premium feature! ✨</p>
+                        <p><a href="#" onclick="navigateTo('pricing', {currentTarget: document.querySelector('.main-nav a[onclick*=\'pricing\']')}); return false;">Upgrade to Premium</a> for access.</p>
+                    </div>
+                    <div class="input-group">
+                        <label for="evEbitEV">Enterprise Value ($):</label> <input type="number" id="evEbitEV" placeholder="e.g., 1000000" disabled>
+                        <label for="evEbitEBIT">EBIT ($):</label> <input type="number" id="evEbitEBIT" placeholder="e.g., 100000" disabled>
+                    </div>
+                    <button class="calculate-button premium-button" onclick="showPremiumMockupAlert('EV/EBIT Calculator')">Calculate (Premium)</button>
+                    <div class="notes-source">
+                        <h4>Notes & Source (from "Corporate Valuation"):</h4>
+                        <ul><li>Compares company value to its operating income before interest and taxes.</li></ul>
+                        <p class="source-ref">Reference: Chapter 16, page 262.</p>
+                    </div>
+                </div>
+                <div id="evEbitdaCalc" class="calculator-content calculator-section">
+                    <h2>EV/EBITDA Multiple Calculator <span class="premium-badge">★</span></h2>
+                    <p class="description">Calculates Enterprise Value to EBITDA multiple.</p>
+                    <div class="premium-mockup-message">
+                        <p>✨ The EV/EBITDA Calculator is a premium feature! ✨</p>
+                        <p><a href="#" onclick="navigateTo('pricing', {currentTarget: document.querySelector('.main-nav a[onclick*=\'pricing\']')}); return false;">Upgrade to Premium</a> for access.</p>
+                    </div>
+                     <div class="input-group">
+                        <label for="evEbitdaEV">Enterprise Value ($):</label> <input type="number" id="evEbitdaEV" placeholder="e.g., 1200000" disabled>
+                        <label for="evEbitdaEBITDA">EBITDA ($):</label> <input type="number" id="evEbitdaEBITDA" placeholder="e.g., 150000" disabled>
+                    </div>
+                    <button class="calculate-button premium-button" onclick="showPremiumMockupAlert('EV/EBITDA Calculator')">Calculate (Premium)</button>
+                    <div class="notes-source">
+                        <h4>Notes & Source (from "Corporate Valuation"):</h4>
+                        <ul><li>Commonly used as a proxy for pre-tax cash flow.</li></ul>
+                        <p class="source-ref">Reference: Chapter 17, page 267.</p>
+                    </div>
+                </div>
+                <div id="psCalc" class="calculator-content calculator-section">
+                    <h2>P/S Ratio Calculator <span class="premium-badge">★</span></h2>
+                    <p class="description">Calculates Price-to-Sales ratio.</p>
+                    <div class="premium-mockup-message">
+                        <p>✨ The P/S Ratio Calculator is a premium feature! ✨</p>
+                        <p><a href="#" onclick="navigateTo('pricing', {currentTarget: document.querySelector('.main-nav a[onclick*=\'pricing\']')}); return false;">Upgrade to Premium</a> for access.</p>
+                    </div>
+                    <div class="input-group">
+                        <label for="psPrice">Market Price per Share ($):</label> <input type="number" id="psPrice" placeholder="e.g., 20" disabled>
+                        <label for="psSPS">Sales per Share ($):</label> <input type="number" id="psSPS" placeholder="e.g., 10" disabled>
+                    </div>
+                    <button class="calculate-button premium-button" onclick="showPremiumMockupAlert('P/S Ratio Calculator')">Calculate (Premium)</button>
+                    <div class="notes-source">
+                        <h4>Notes & Source (from "Corporate Valuation"):</h4>
+                        <ul><li>Useful for companies with negative earnings.</li></ul>
+                        <p class="source-ref">Reference: Chapter 18, page 271.</p>
+                    </div>
+                </div>
+                 <div id="evsCalc" class="calculator-content calculator-section">
+                    <h2>EV/Sales Ratio Calculator <span class="premium-badge">★</span></h2>
+                    <p class="description">Calculates Enterprise Value to Sales ratio.</p>
+                    <div class="premium-mockup-message">
+                        <p>✨ The EV/Sales Calculator is a premium feature! ✨</p>
+                        <p><a href="#" onclick="navigateTo('pricing', {currentTarget: document.querySelector('.main-nav a[onclick*=\'pricing\']')}); return false;">Upgrade to Premium</a> for access.</p>
+                    </div>
+                    <div class="input-group">
+                        <label for="evsEV">Enterprise Value ($):</label> <input type="number" id="evsEV" placeholder="e.g., 1000000" disabled>
+                        <label for="evsSales">Total Sales ($):</label> <input type="number" id="evsSales" placeholder="e.g., 500000" disabled>
+                    </div>
+                    <button class="calculate-button premium-button" onclick="showPremiumMockupAlert('EV/Sales Calculator')">Calculate (Premium)</button>
+                    <div class="notes-source">
+                        <h4>Notes & Source (from "Corporate Valuation"):</h4>
+                        <ul><li>Useful for loss-making companies or when comparing firms with different capital structures.</li></ul>
+                        <p class="source-ref">Reference: Chapter 19, page 279.</p>
+                    </div>
+                </div>
+                 <div id="pbCalc" class="calculator-content calculator-section">
+                    <h2>P/B Ratio Calculator <span class="premium-badge">★</span></h2>
+                    <p class="description">Calculates Price-to-Book ratio.</p>
+                    <div class="premium-mockup-message">
+                        <p>✨ The P/B Ratio Calculator is a premium feature! ✨</p>
+                        <p><a href="#" onclick="navigateTo('pricing', {currentTarget: document.querySelector('.main-nav a[onclick*=\'pricing\']')}); return false;">Upgrade to Premium</a> for access.</p>
+                    </div>
+                    <div class="input-group">
+                        <label for="pbPrice">Market Price per Share ($):</label> <input type="number" id="pbPrice" placeholder="e.g., 30" disabled>
+                        <label for="pbBVPS">Book Value per Share ($) (from BVPS Calc):</label> <input type="number" id="pbBVPS" placeholder="e.g., 15" disabled>
+                    </div>
+                    <button class="calculate-button premium-button" onclick="showPremiumMockupAlert('P/B Ratio Calculator')">Calculate (Premium)</button>
+                    <div class="notes-source">
+                        <h4>Notes & Source (from "Corporate Valuation"):</h4>
+                        <ul><li>Compares market value to book value; useful for financial firms.</li></ul>
+                        <p class="source-ref">Reference: Chapter 20, page 283.</p>
+                    </div>
+                </div>
+
+
+            </section>
+
+            <section id="learningCenter" class="page-content page-section">
+                <h2>Learning Center</h2>
+                <p class="description">Deepen your understanding of corporate valuation with resources drawn directly from "All About Corporate Valuation".</p>
+                
+                <h3>Glossary of Valuation Terms <span class="case-badge free-badge" style="font-size:0.7em;">Free</span></h3>
+                <p>Key definitions to build your valuation vocabulary.</p>
+                <ul>
+                    <li><strong>Value:</strong> An opinion of economic benefit, or the most probable price to be paid for an asset in an exchange. (Source: Chapter 1, page 5)</li>
+                    <li><strong>Price:</strong> The amount of money asked, offered, or paid for an asset. (Source: Chapter 1, page 10)</li>
+                    <li><strong>Cost:</strong> The amount of money required to obtain or create an asset. (Source: Chapter 1, page 10)</li>
+                    <li><strong>Valuation:</strong> The process of a valuer providing a written opinion of economic value at a specific time. (Source: Chapter 1, page 11)</li>
+                    <li><strong>WACC (Weighted Average Cost of Capital):</strong> The average rate of return a company needs to earn to satisfy all its investors. (Source: Chapter 7, page 87)</li>
+                    <li><strong>NOPLAT (Net Operating Profit Less Adjusted Tax):</strong> Operating profit adjusted for taxes. (Source: Chapter 5, page 176)</li>
+                    <li><strong>ROIC (Return on Invested Capital):</strong> Measures the return a company earns on the capital invested. (Source: Chapter 5, page 178)</li>
+                    <li><strong>CAPM (Capital Asset Pricing Model):</strong> Model for systematic risk and expected return. (Source: Chapter 7, page 104)</li>
+                    <li><strong>Beta (β):</strong> A measure of a stock's volatility relative to the market. (Source: Chapter 7, page 110)</li>
+                    <li><strong>Free Cash Flow (FCF):</strong> Cash flow available to all investors after operating and capital expenditures. (Source: Chapter 5, page 177)</li>
+                    <li><strong>EVA (Economic Value Added):</strong> A measure of a company's financial performance based on residual wealth. (Source: Chapter 12, page 209)</li>
+                    <li><strong>APV (Adjusted Present Value):</strong> Valuation method separating operating value and financing effects. (Source: Chapter 13, page 224)</li>
+                    <li><em>... more terms to be added.</em></li>
+                </ul>
+
+                <h3>Valuation Methodologies Overview</h3>
+                <h4>Economic Valuation Methods <span class="case-badge free-badge" style="font-size:0.7em;">Intro Free</span> <span class="case-badge premium-badge-case" style="font-size:0.7em;">Full Guide Premium</span></h4>
+                <p>Understanding intrinsic value based on future economic benefits. (Based on Chapters 3-13)</p>
+                <ul>
+                    <li><strong>Discounted Cash Flow (DCF):</strong> 
+                        <br><em>Free Teaser:</em> The DCF method values a company based on the present value of its expected future free cash flows. It involves forecasting cash flows, determining a discount rate (WACC), and calculating a terminal value.
+                        <br><em>Premium:</em> Detailed step-by-step guide (Historical Analysis, Projections, Discount Rate, Terminal Value, Sensitivity Analysis - Ch 4-11), advanced adjustments, and case study applications.
+                    </li>
+                    <li><strong>Economic Value Added (EVA):</strong>
+                        <br><em>Free Teaser:</em> EVA measures the value created by a company in excess of its required return on capital. A positive EVA indicates value creation.
+                        <br><em>Premium:</em> In-depth calculation nuances, equity equivalent adjustments, and strategic implications for performance management (Ch 12).
+                    </li>
+                    <li><strong>Adjusted Present Value (APV):</strong>
+                        <br><em>Free Teaser:</em> The APV method separates the value of an all-equity financed firm from the value of financing side effects (like tax shields from debt).
+                        <br><em>Premium:</em> Application in highly leveraged transactions, changing capital structures, and detailed calculation steps (Ch 13).
+                    </li>
+                </ul>
+
+                <h4>Relative Valuation Methods <span class="case-badge free-badge" style="font-size:0.7em;">Intro Free</span> <span class="case-badge premium-badge-case" style="font-size:0.7em;">Full Guide Premium</span></h4>
+                <p>Valuing companies by comparing them to peers using market multiples. (Based on Chapters 14-20)</p>
+                <ul>
+                    <li><strong>Introduction to Multiples:</strong> 
+                        <br><em>Free Teaser:</em> Understanding common multiples like P/E, EV/EBITDA, P/S, P/B and their basic interpretation.
+                        <br><em>Premium:</em> Detailed analysis of each multiple (P/E - Ch 15, EV/EBIT - Ch 16, EV/EBITDA - Ch 17, P/S - Ch 18, EV/S - Ch 19, P/B - Ch 20), choosing appropriate comparables, data normalization techniques, and addressing industry-specific multiple considerations.
+                    </li>
+                </ul>
+
+                <h4>Real Option Valuation <span class="case-badge free-badge" style="font-size:0.7em;">Intro Free</span> <span class="case-badge premium-badge-case" style="font-size:0.7em;">Full Guide Premium</span></h4>
+                <p>Valuing managerial flexibility and strategic opportunities embedded in projects or companies. (Based on Chapters 21-23)</p>
+                <ul>
+                    <li><strong>Basics of Options:</strong> 
+                        <br><em>Free Teaser:</em> Understanding call options, put options, and the key factors that determine an option's value.
+                        <br><em>Premium:</em> Applying option pricing models (Binomial, Black-Scholes) to real assets, valuing options to delay, expand, or abandon projects, and practical challenges (Ch 23).
+                    </li>
+                </ul>
+
+                <h4>Asset-Based Valuation <span class="case-badge free-badge" style="font-size:0.7em;">Free</span></h4>
+                <p>Valuation based on the fair market value of a company's net assets, often used for liquidations or holding companies. (Based on Chapter 24)</p>
+                <ul>
+                    <li>Liquidation Value vs. Going Concern Value.</li>
+                    <li>Adjusted Book Value Method: Steps and considerations.</li>
+                    <li>Replacement Value Method: When and how to apply.</li>
+                </ul>
+
+                <h3>Indonesian Context: SPI & OJK Guidelines <span class="case-badge free-badge" style="font-size:0.7em;">Free</span></h3>
+                <p>Understanding the valuation landscape in Indonesia. (Based on Chapters 26-27)</p>
+                <ul>
+                    <li>Overview of Standar Penilaian Indonesia (SPI) for Business Valuation (SPI 330).</li>
+                    <li>Key principles from Kode Etik Penilai Indonesia (KEPI) - Integrity, Objectivity, Competence.</li>
+                    <li>Bapepam-LK (OJK) guidelines for valuations in the capital market (Peraturan IX.E.1, IX.E.2, VIII.C.3).</li>
+                    <li>Concept of Nilai Pasar Wajar (Fair Market Value) in the Indonesian context.</li>
+                    <li>Requirements for valuation reports and valuers in Indonesia.</li>
+                </ul>
+                <div class="premium-mockup-message" style="margin-top: 20px;">
+                     <p>Unlock in-depth articles, advanced guides, and full methodology explanations with our Premium Subscription!</p>
+                </div>
+            </section>
+
+            <section id="videoTutorials" class="page-content page-section">
+                <h2>Video Tutorials</h2>
+                <p class="description">Visual explanations of key concepts and calculator walkthroughs.</p>
+                
+                <h4>Free Video Library (Examples):</h4>
+                <ul>
+                    <li><strong>Video:</strong> What is Corporate Valuation? - Core Concepts (Chapter 1)</li>
+                    <li><strong>Video:</strong> Understanding Financial Statements for Valuation - Key Items to Analyze (Chapter 5)</li>
+                    <li><strong>Video:</strong> P/E Ratio Explained - How to Calculate and Interpret (Chapter 15)</li>
+                    <li><strong>Video:</strong> Dividend Discount Model (DDM) Basics - Constant Growth (Chapter 8)</li>
+                    <li><strong>Video:</strong> Introduction to WACC - Why it Matters (Chapter 7)</li>
+                </ul>
+
+                <h4>Premium Video Library (Mockup - Examples):</h4>
+                <ul>
+                    <li><strong>Video:</strong> Step-by-Step DCF Valuation Case Study (Like PT Karang Herbal - Chapter 11)</li>
+                    <li><strong>Video:</strong> WACC Deep Dive - Calculating Each Component (Cost of Equity, Debt, Weights - Chapter 7)</li>
+                    <li><strong>Video:</strong> Relative Valuation in Practice - Selecting Comparables & Adjusting Multiples (Chapter 14)</li>
+                    <li><strong>Video:</strong> Valuing Growth Companies - Techniques and Challenges (Chapter 10)</li>
+                    <li><strong>Video:</strong> Introduction to Real Option Valuation Models - Valuing Flexibility (Chapters 22-23)</li>
+                    <li><strong>Video:</strong> Merger Valuation Case Study Breakdown - Synergies & Exchange Ratios (Inspired by Chapter 25)</li>
+                    <li><strong>Video:</strong> Navigating Indonesian Valuation Standards (SPI) - Key Considerations for Professionals (Chapters 26-27)</li>
+                    <li><strong>Video:</strong> Advanced NOPLAT and Invested Capital Adjustments (Chapter 5)</li>
+                </ul>
+                 <div class="premium-mockup-message" style="margin-top:10px;">
+                    <p>Access our complete library of expert-led video tutorials, including advanced topics and detailed case studies, by <a href="#" onclick="navigateTo('pricing', {currentTarget: document.querySelector('.main-nav a[onclick*=\'pricing\']')}); return false;">upgrading to Premium</a>!</p>
+                </div>
+            </section>
+
+            <section id="caseStudies" class="page-content page-section">
+                <h2>Interactive Case Studies</h2>
+                <p class="description">Apply your knowledge with guided valuation walkthroughs, inspired by examples from "All About Corporate Valuation".</p>
+
+                <div class="case-study-item">
+                    <h4>Basic DCF Walkthrough: "StartupTech Inc." <span class="case-badge free-badge">Free</span></h4>
+                    <p>
+                        Follow a simplified, step-by-step guide to valuing a hypothetical early-stage technology company using the Discounted Cash Flow (DCF) method. 
+                        This case focuses on building basic revenue projections, estimating costs, understanding capital expenditures, and calculating a simple terminal value. 
+                        Perfect for grasping the core DCF framework as outlined in the book.
+                    </p>
+                    <p><em>(This interactive module will guide you through: 1. Revenue & Growth Assumptions, 2. Cost Structure & Margins, 3. Capital Expenditures & Working Capital Needs, 4. Determining a Discount Rate (WACC) - simplified approach, 5. Calculating Free Cash Flows, 6. Estimating Terminal Value using Gordon Growth, 7. Arriving at an Enterprise and Equity Value.)</em></p>
+                    <a href="#" class="view-case-button" onclick="alert('Basic Case Study Walkthrough coming soon! This will be an interactive module.'); return false;">Start Free Case Study</a>
+                    <p class="source-ref">Based on DCF principles from Chapters 4-11.</p>
+                </div>
+
+                <div class="case-study-item">
+                    <h4>Advanced Merger Valuation: "PharmaCombine Corp." <span class="case-badge premium-badge-case">Premium</span></h4>
+                    <p>
+                        Tackle a more complex scenario involving the merger of two pharmaceutical companies. This advanced case study, inspired by the PT Kalbe Farma example in the book (Chapter 25), 
+                        will require you to apply multiple valuation methods (DCF and Relative Valuation for standalone entities), analyze and quantify potential synergies, and determine a fair share exchange ratio.
+                    </p>
+                    <p><em>(Premium interactive module will include: 1. Standalone DCF Valuation of Acquirer & Target, 2. Relative Valuation of Acquirer & Target using industry comparables, 3. Identification & Quantification of Operating and Financial Synergies, 4. Pro-forma Combined Company Projections, 5. Determining an appropriate Share Exchange Ratio considering control premiums, 6. Accretion/Dilution Analysis for EPS.)</em></p>
+                     <div class="premium-mockup-message" style="font-size: 0.9em; padding: 10px; margin-top:10px;">
+                        <p>✨ This Advanced Case Study is a premium feature! ✨</p>
+                        <p><a href="#" onclick="navigateTo('pricing', {currentTarget: document.querySelector('.main-nav a[onclick*=\'pricing\']')}); return false;">Upgrade to Premium</a> for full access to this and other detailed case studies.</p>
+                    </div>
+                    <a href="#" class="view-case-button premium" onclick="showPremiumMockupAlert('Advanced PharmaCombine Case Study'); return false;">Access Premium Case Study</a>
+                    <p class="source-ref">Inspired by concepts in Chapter 25 (Merger Valuation) and comprehensive DCF/Relative Valuation techniques from Parts III & IV.</p>
+                </div>
+            </section>
+
+
+            <section id="pricing" class="page-content page-section">
+                <h2>Pricing & Subscription</h2>
+                <p class="description">Choose a plan that suits your learning and valuation needs. Unlock the full potential of "All About Corporate Valuation" interactive tools and content.</p>
+                <div class="pricing-tiers-container">
+                    <div class="pricing-tier-box">
+                        <h3>Free Tier</h3>
+                        <p class="tier-price">$0 <span>/ month</span></p>
+                        <ul>
+                            <li>Access to Basic Calculators:
+                                <ul>
+                                    <li>P/E Ratio</li>
+                                    <li>DDM (Constant Growth)</li>
+                                    <li>Book Value per Share (BVPS)</li>
+                                    <li>NOPLAT</li>
+                                    <li>ROIC</li>
+                                    <li>CAPM (Cost of Equity)</li>
+                                    <li>Basic WACC</li>
+                                </ul>
+                            </li>
+                            <li>Expanded Glossary in Learning Center.</li>
+                            <li>Selected Introductory Video Tutorials.</li>
+                            <li>Overview of Valuation Methodologies (Teasers).</li>
+                            <li>Indonesian Context (SPI & OJK) Summaries.</li>
+                            <li>Basic Case Study Walkthrough (1 Free).</li>
+                        </ul>
+                        <button class="calculate-button" style="background-color: #6c757d;" disabled>Currently Active</button>
+                    </div>
+                    <div class="pricing-tier-box premium-tier">
+                        <h3>Premium Tier (Mockup)</h3>
+                        <p class="tier-price">$19 <span>/ month (Hypothetical)</span></p>
+                        <ul>
+                            <li><strong>All Free Tier features, PLUS:</strong></li>
+                            <li>Full access to ALL Advanced Calculators:
+                                <ul>
+                                    <li>Advanced DCF Suite (Multi-year, Sensitivity Analysis)</li>
+                                    <li>Economic Value Added (EVA)</li>
+                                    <li>Adjusted Present Value (APV)</li>
+                                    <li>All Relative Multiples (EV/EBIT, EV/EBITDA, P/S, EV/S, P/B) with implied value calculations.</li>
+                                    <li>Real Option Valuation (Simplified Models)</li>
+                                </ul>
+                            </li>
+                            <li>Complete Learning Center: In-depth articles & full guides on all methodologies.</li>
+                            <li>Full library of Video Tutorials: Advanced topics & detailed case study breakdowns.</li>
+                            <li>All Interactive Case Study Modules (including Advanced & Industry-Specific).</li>
+                            <li>Mockup Feature: "Book a 30-min Q&A Session with Irwan Djaja" (Valued at $XXX).</li>
+                            <li>Downloadable Excel templates & checklists for valuations.</li>
+                            <li>Early access to new tools and content.</li>
+                        </ul>
+                        <button class="calculate-button" onclick="alert('Thank you for your interest! Subscription functionality is a mockup for this demo. Clicking this would typically lead to a payment page.')">Upgrade to Premium (Mockup)</button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="page-content page-section">
+                <h2>About This Resource</h2>
+                <p class="description">
+                    This website is an interactive companion to the book <strong>"ALL ABOUT CORPORATE VALUATION: Memetakan, Menciptakan, Mengukur, dan Merealisasikan Nilai Perusahaan"</strong> by Irwan Djaja.
+                    Our mission is to provide accessible tools and clear explanations to help users master the art and science of corporate valuation.
+                </p>
+                <h4>About the Author: Irwan Djaja</h4>
+                <p><em>(A brief bio of Irwan Djaja would go here, highlighting expertise in corporate finance and valuation, his current role, and academic background as mentioned in the book's "About the Author" section.)</em></p>
+                <p>This website aims to bring the comprehensive knowledge from the book into an interactive format, making complex valuation techniques more approachable and applicable for students, financial professionals, and business owners alike.</p>
+            </section>
+
+        </main>
+    </div>    <footer class="app-footer">
+        <p>&copy; 2024 Interactive Corporate Valuation Tools. Based on the work of Irwan Djaja.</p>
+        <p class="disclaimer">
+            <strong>Disclaimer:</strong> This website and its calculators are for educational and illustrative purposes only,
+            based on the principles outlined in "Corporate Valuation" by Irwan Djaja.
+            The information provided does not constitute financial, investment, or professional advice.
+            Always consult with a qualified financial advisor before making any investment decisions.
+            Valuation involves significant judgment and depends on the specific circumstances and data used.
+        </p>
+    </footer>
+
+    <script>
+        // --- Navigation and Tab Management ---
+        function navigateTo(pageId, event) {
+            event.preventDefault(); 
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+
+            const navLinks = document.querySelectorAll('.main-nav a');
+            navLinks.forEach(link => link.classList.remove('active-nav'));
+            event.currentTarget.classList.add('active-nav');
+
+            if (pageId === 'calculators') {
+                const firstCalculatorTabButton = document.querySelector('#calculators .tab-navigation .tab-button');
+                if (firstCalculatorTabButton) {
+                    openCalculatorTab('peRatioCalc', firstCalculatorTabButton);
+                }
+            }
+        }
+
+        function openCalculatorTab(calculatorId, clickedTabElement) {
+            const contents = document.querySelectorAll('#calculators .calculator-content');
+            contents.forEach(content => content.classList.remove('active'));
+            document.getElementById(calculatorId).classList.add('active');
+
+            const buttons = document.querySelectorAll('#calculators .tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+             if (clickedTabElement && typeof clickedTabElement.classList !== 'undefined') {
+                clickedTabElement.classList.add('active');
+            }
+        }
+
+        function showPremiumMockupAlert(toolName) {
+            alert(`The "${toolName}" is a premium feature. Please visit our Pricing page for more information on how to access advanced tools! (This is a mockup)`);
+            const pricingLink = document.querySelector('.main-nav a[onclick*="pricing"]');
+            if (pricingLink) {
+                navigateTo('pricing', { currentTarget: pricingLink });
+            }
+        }
+
+
+        // --- P/E Ratio Calculator Logic ---
+        function calculatePERatio() {
+            const marketPrice = parseFloat(document.getElementById('peMarketPrice').value);
+            const eps = parseFloat(document.getElementById('peEps').value);
+            const resultDiv = document.getElementById('peResult');
+            const calculatedRatioSpan = document.getElementById('peCalculatedRatio');
+            const errorMessageDiv = document.getElementById('peErrorMessage');
+
+            resultDiv.style.display = 'none';
+            errorMessageDiv.style.display = 'none'; 
+            errorMessageDiv.textContent = '';
+
+            if (isNaN(marketPrice) || isNaN(eps)) {
+                errorMessageDiv.textContent = 'Please enter valid numbers for market price and EPS.';
+                errorMessageDiv.style.display = 'block';
+                return;
+            }
+            if (marketPrice <= 0) {
+                errorMessageDiv.textContent = 'Market Price per Share must be positive.';
+                errorMessageDiv.style.display = 'block';
+                return;
+            }
+            if (eps <= 0) {
+                errorMessageDiv.textContent = 'EPS must be positive for a meaningful P/E ratio (Book: Ch 15, pg 252).';
+                errorMessageDiv.style.display = 'block';
+                return;
+            }
+            const peRatio = marketPrice / eps;
+            if (isFinite(peRatio)) {
+                calculatedRatioSpan.textContent = peRatio.toFixed(2);
+                resultDiv.style.display = 'block';
+            } else {
+                errorMessageDiv.textContent = 'Calculation error. Check inputs.';
+                errorMessageDiv.style.display = 'block';
+            }
+        }
+
+        // --- DDM (Constant Growth) Calculator Logic ---
+        function calculateDDMValue() {
+            const currentDividendStr = document.getElementById('ddmCurrentDividend').value;
+            let expectedDividendD1Input = document.getElementById('ddmExpectedDividend');
+            let expectedDividendD1 = parseFloat(expectedDividendD1Input.value);
+            const costOfEquity_ke = parseFloat(document.getElementById('ddmCostOfEquity').value);
+            const growthRate_g = parseFloat(document.getElementById('ddmGrowthRate').value);
+
+            const resultDiv = document.getElementById('ddmResult');
+            const calculatedValueSpan = document.getElementById('ddmCalculatedValue');
+            const errorMessageDiv = document.getElementById('ddmErrorMessage');
+
+            resultDiv.style.display = 'none';
+            errorMessageDiv.style.display = 'none';
+            errorMessageDiv.textContent = '';
+            
+            if (currentDividendStr !== '' && !isNaN(parseFloat(currentDividendStr)) && !isNaN(growthRate_g) && isNaN(expectedDividendD1)) {
+                const currentDividendD0 = parseFloat(currentDividendStr);
+                if (currentDividendD0 >= 0) {
+                    expectedDividendD1 = currentDividendD0 * (1 + growthRate_g);
+                    expectedDividendD1Input.value = expectedDividendD1.toFixed(2); 
+                } else {
+                    errorMessageDiv.textContent = 'Current Dividend (D₀) must be non-negative.';
+                    errorMessageDiv.style.display = 'block';
+                    return;
+                }
+            } 
+
+            if (isNaN(expectedDividendD1) || isNaN(costOfEquity_ke) || isNaN(growthRate_g)) {
+                errorMessageDiv.textContent = 'Please ensure D₁, kₑ, and g have valid numbers.';
+                errorMessageDiv.style.display = 'block';
+                return;
+            }
+            if (expectedDividendD1 <= 0) {
+                errorMessageDiv.textContent = 'Expected Dividend (D₁) must be positive.';
+                errorMessageDiv.style.display = 'block';
+                return;
+            }
+            if (costOfEquity_ke <= 0) {
+                errorMessageDiv.textContent = 'Cost of Equity (kₑ) must be positive.';
+                errorMessageDiv.style.display = 'block';
+                return;
+            }
+            if (costOfEquity_ke <= growthRate_g) {
+                errorMessageDiv.textContent = 'Cost of Equity (kₑ) must be greater than Growth Rate (g) (Book: Ch 8, pg 135).';
+                errorMessageDiv.style.display = 'block';
+                return;
+            }
+
+            const intrinsicValue_P0 = expectedDividendD1 / (costOfEquity_ke - growthRate_g);
+            if (isFinite(intrinsicValue_P0)) {
+                calculatedValueSpan.textContent = '$' + intrinsicValue_P0.toFixed(2);
+                resultDiv.style.display = 'block';
+            } else {
+                errorMessageDiv.textContent = 'Calculation error. Ensure kₑ > g.';
+                errorMessageDiv.style.display = 'block';
+            }
+        }
+
+        // --- Book Value per Share (BVPS) Calculator Logic ---
+        function calculateBVPS() {
+            const totalEquity = parseFloat(document.getElementById('bvpsTotalEquity').value);
+            const preferredEquity = parseFloat(document.getElementById('bvpsPreferredEquity').value);
+            const commonShares = parseFloat(document.getElementById('bvpsCommonShares').value);
+
+            const resultDiv = document.getElementById('bvpsResult');
+            const calculatedValueSpan = document.getElementById('bvpsCalculatedValue');
+            const errorMessageDiv = document.getElementById('bvpsErrorMessage');
+
+            resultDiv.style.display = 'none';
+            errorMessageDiv.style.display = 'none';
+            errorMessageDiv.textContent = '';
+
+            if (isNaN(totalEquity) || isNaN(preferredEquity) || isNaN(commonShares)) {
+                errorMessageDiv.textContent = 'Please enter valid numbers for all fields.';
+                errorMessageDiv.style.display = 'block';
+                return;
+            }
+            if (commonShares <= 0) {
+                errorMessageDiv.textContent = 'Number of Common Shares must be positive.';
+                errorMessageDiv.style.display = 'block';
+                return;
+            }
+            if (totalEquity < preferredEquity) {
+                errorMessageDiv.textContent = 'Total Equity cannot be less than Preferred Equity.';
+                errorMessageDiv.style.display = 'block';
+                return;
+            }
+
+            const bookValueCommonEquity = totalEquity - preferredEquity;
+            const bvps = bookValueCommonEquity / commonShares;
+
+            if (isFinite(bvps)) {
+                calculatedValueSpan.textContent = '$' + bvps.toFixed(2);
+                resultDiv.style.display = 'block';
+            } else {
+                errorMessageDiv.textContent = 'Calculation error. Check inputs.';
+                errorMessageDiv.style.display = 'block';
+            }
+        }
+
+        // --- NOPLAT Calculator Logic ---
+        function calculateNOPLAT() {
+            const ebitSimple = parseFloat(document.getElementById('noplatEbit').value);
+            const cashTaxesSimple = parseFloat(document.getElementById('noplatCashTaxes').value);
+
+            const pbtDetail = parseFloat(document.getElementById('noplatPBT').value);
+            const intExpDetail = parseFloat(document.getElementById('noplatIntExp').value);
+            const intIncDetail = parseFloat(document.getElementById('noplatIntInc').value);
+            const nonOpIncDetail = parseFloat(document.getElementById('noplatNonOpInc').value);
+            const taxProvDetail = parseFloat(document.getElementById('noplatTaxProv').value);
+            const taxShieldDetail = parseFloat(document.getElementById('noplatTaxShield').value);
+            const taxOnIntIncDetail = parseFloat(document.getElementById('noplatTaxOnIntInc').value);
+            const taxOnNonOpIncDetail = parseFloat(document.getElementById('noplatTaxOnNonOpInc').value);
+
+            const resultDiv = document.getElementById('noplatResult');
+            const calculatedValueSpan = document.getElementById('noplatCalculatedValue');
+            const errorMessageDiv = document.getElementById('noplatErrorMessage');
+
+            resultDiv.style.display = 'none';
+            errorMessageDiv.style.display = 'none';
+            errorMessageDiv.textContent = '';
+            let noplat = NaN;
+
+            if (!isNaN(ebitSimple) && !isNaN(cashTaxesSimple)) {
+                if (ebitSimple < 0 && cashTaxesSimple > 0) {
+                     errorMessageDiv.textContent = 'If EBIT is negative, cash taxes on EBIT are typically zero or negative (tax refund).';
+                     errorMessageDiv.style.display = 'block';
+                     return;
+                }
+                noplat = ebitSimple - cashTaxesSimple;
+            } 
+            else if (!isNaN(pbtDetail) && !isNaN(intExpDetail) && !isNaN(taxProvDetail) && !isNaN(taxShieldDetail)) {
+                let calculatedEBIT = pbtDetail + intExpDetail;
+                if (!isNaN(intIncDetail)) calculatedEBIT -= intIncDetail;
+                if (!isNaN(nonOpIncDetail)) calculatedEBIT -= nonOpIncDetail;
+
+                let calculatedTaxesOnEBIT = taxProvDetail + taxShieldDetail;
+                if (!isNaN(taxOnIntIncDetail)) calculatedTaxesOnEBIT -= taxOnIntIncDetail;
+                if (!isNaN(taxOnNonOpIncDetail)) calculatedTaxesOnEBIT -= taxOnNonOpIncDetail;
+                
+                if (calculatedEBIT < 0 && calculatedTaxesOnEBIT > 0) {
+                     errorMessageDiv.textContent = 'If calculated EBIT is negative, adjusted taxes are typically zero or negative.';
+                     errorMessageDiv.style.display = 'block';
+                     return;
+                }
+                noplat = calculatedEBIT - calculatedTaxesOnEBIT;
+            }
+            else {
+                errorMessageDiv.textContent = 'Please fill in either (EBIT and Cash Taxes on EBIT) OR the detailed fields for NOPLAT calculation.';
+                errorMessageDiv.style.display = 'block';
+                return;
+            }
+
+            if (isFinite(noplat)) {
+                calculatedValueSpan.textContent = '$' + noplat.toFixed(2);
+                resultDiv.style.display = 'block';
+                document.getElementById('roicNoplat').value = noplat.toFixed(2);
+            } else {
+                errorMessageDiv.textContent = 'Calculation error. Check inputs for NOPLAT.';
+                errorMessageDiv.style.display = 'block';
+            }
+        }
+
+        // --- ROIC Calculator Logic ---
+        function calculateROIC() {
+            const noplat = parseFloat(document.getElementById('roicNoplat').value);
+            const investedCapital = parseFloat(document.getElementById('roicInvestedCapital').value);
+            const resultDiv = document.getElementById('roicResult');
+            const calculatedValueSpan = document.getElementById('roicCalculatedValue');
+            const errorMessageDiv = document.getElementById('roicErrorMessage');
+
+            resultDiv.style.display = 'none';
+            errorMessageDiv.style.display = 'none';
+            errorMessageDiv.textContent = '';
+
+            if (isNaN(noplat) || isNaN(investedCapital)) {
+                errorMessageDiv.textContent = 'Please enter valid numbers for NOPLAT and Invested Capital.';
+                errorMessageDiv.style.display = 'block';
+                return;
+            }
+            if (investedCapital <= 0) {
+                errorMessageDiv.textContent = 'Invested Capital must be positive.';
+                errorMessageDiv.style.display = 'block';
+                return;
+            }
+            const roic = (noplat / investedCapital) * 100;
+            if (isFinite(roic)) {
+                calculatedValueSpan.textContent = roic.toFixed(2);
+                resultDiv.style.display = 'block';
+            } else {
+                errorMessageDiv.textContent = 'Calculation error. Check inputs.';
+                errorMessageDiv.style.display = 'block';
+            }
+        }
+
+        // --- CAPM Calculator Logic ---
+        function calculateCAPM() {
+            const rf = parseFloat(document.getElementById('capmRf').value);
+            const beta = parseFloat(document.getElementById('capmBeta').value);
+            const mrp = parseFloat(document.getElementById('capmMrp').value);
+            const resultDiv = document.getElementById('capmResult');
+            const calculatedValueSpan = document.getElementById('capmCalculatedValue');
+            const errorMessageDiv = document.getElementById('capmErrorMessage');
+
+            resultDiv.style.display = 'none';
+            errorMessageDiv.style.display = 'none';
+            errorMessageDiv.textContent = '';
+
+            if (isNaN(rf) || isNaN(beta) || isNaN(mrp)) {
+                errorMessageDiv.textContent = 'Please enter valid numbers for all fields.';
+                errorMessageDiv.style.display = 'block';
+                return;
+            }
+            const ke = (rf + beta * mrp) * 100;
+            if (isFinite(ke)) {
+                calculatedValueSpan.textContent = ke.toFixed(2);
+                resultDiv.style.display = 'block';
+                document.getElementById('waccKe').value = (ke / 100).toFixed(4);
+            } else {
+                errorMessageDiv.textContent = 'Calculation error. Check inputs.';
+                errorMessageDiv.style.display = 'block';
+            }
+        }
+
+        // --- WACC Calculator Logic ---
+        function calculateWACC() {
+            const ke = parseFloat(document.getElementById('waccKe').value);
+            const kd = parseFloat(document.getElementById('waccKd').value);
+            const taxRate = parseFloat(document.getElementById('waccTaxRate').value);
+            const equityValue = parseFloat(document.getElementById('waccEquityValue').value);
+            const debtValue = parseFloat(document.getElementById('waccDebtValue').value);
+
+            const resultDiv = document.getElementById('waccResult');
+            const calculatedValueSpan = document.getElementById('waccCalculatedValue');
+            const errorMessageDiv = document.getElementById('waccErrorMessage');
+
+            resultDiv.style.display = 'none';
+            errorMessageDiv.style.display = 'none';
+            errorMessageDiv.textContent = '';
+
+            if (isNaN(ke) || isNaN(kd) || isNaN(taxRate) || isNaN(equityValue) || isNaN(debtValue)) {
+                errorMessageDiv.textContent = 'Please enter valid numbers for all fields.';
+                errorMessageDiv.style.display = 'block';
+                return;
+            }
+            if (equityValue < 0 || debtValue < 0) {
+                errorMessageDiv.textContent = 'Market values of Equity and Debt must be non-negative.';
+                errorMessageDiv.style.display = 'block';
+                return;
+            }
+            if (taxRate < 0 || taxRate >= 1) {
+                errorMessageDiv.textContent = 'Tax rate must be between 0 and 1 (e.g., 0.25 for 25%).';
+                errorMessageDiv.style.display = 'block';
+                return;
+            }
+            if (ke < 0 || kd < 0) {
+                 errorMessageDiv.textContent = 'Costs of equity and debt should generally be positive.';
+                errorMessageDiv.style.display = 'block';
+                return;
+            }
+
+            const totalValue = equityValue + debtValue;
+            if (totalValue <= 0) {
+                errorMessageDiv.textContent = 'Total Market Value (Equity + Debt) must be positive.';
+                errorMessageDiv.style.display = 'block';
+                return;
+            }
+
+            const weightEquity = equityValue / totalValue;
+            const weightDebt = debtValue / totalValue;
+            const wacc = (ke * weightEquity + kd * (1 - taxRate) * weightDebt) * 100;
+
+            if (isFinite(wacc)) {
+                calculatedValueSpan.textContent = wacc.toFixed(2);
+                resultDiv.style.display = 'block';
+            } else {
+                errorMessageDiv.textContent = 'Calculation error. Check inputs.';
+                errorMessageDiv.style.display = 'block';
+            }
+        }
+
+
+        // Initialize the default view
+        document.addEventListener('DOMContentLoaded', () => {
+            navigateTo('home', { currentTarget: document.querySelector('.main-nav a[onclick*="home"]') });
+            const firstCalculatorTabButton = document.querySelector('#calculators .tab-navigation .tab-button');
+            if (firstCalculatorTabButton) {
+                 openCalculatorTab('peRatioCalc', firstCalculatorTabButton);
+            }
+        });
+    </script>
+</body>
+</html>
