@@ -62,6 +62,7 @@
         .header-left {
             display: flex;
             align-items: center;
+            flex-shrink: 0; /* Prevent book cover from shrinking too much */
         }
 
         .book-cover-img {
@@ -74,19 +75,22 @@
 
         .header-center {
             flex-grow: 1;
-            text-align: left;
+            text-align: left; /* Default for desktop */
+            margin: 0 15px; /* Add some margin to prevent touching left/right elements */
         }
 
         .app-header h1 {
             margin: 0 0 2px 0;
             font-size: 1.6em;
             font-weight: 700;
+            line-height: 1.2; /* Adjust line height */
         }
         .app-header .subtitle {
             font-size: 0.85em;
             margin: 0 0 2px 0;
             font-weight: 400;
             opacity: 0.9;
+            line-height: 1.3; /* Adjust line height */
         }
         .app-header .author {
             font-size: 0.8em;
@@ -98,6 +102,7 @@
         .header-right {
             display: flex;
             align-items: center;
+            flex-shrink: 0; /* Prevent auth links from shrinking too much */
         }
         .header-right .auth-link {
             color: var(--text-color-light);
@@ -109,6 +114,7 @@
             border: 1px solid var(--accent-color);
             border-radius: 5px;
             transition: background-color 0.3s, color 0.3s;
+            white-space: nowrap; /* Prevent text wrapping */
         }
         .header-right .auth-link:hover {
             background-color: var(--accent-color);
@@ -125,13 +131,14 @@
             color: var(--text-color-dark);
             font-weight: bold;
             font-size: 0.8em;
+            flex-shrink: 0;
         }
 
 
         /* Main Navigation */
         .main-nav {
             background-color: var(--text-color-dark);
-            padding: 10px 0;
+            padding: 8px 0; /* Slightly reduced padding */
             text-align: center;
             box-shadow: 0 2px 4px var(--shadow-color);
             flex-shrink: 0;
@@ -148,14 +155,15 @@
             flex-wrap: wrap;
         }
         .main-nav li {
-            margin: 5px 10px;
+            margin: 3px 8px; /* Adjusted margin for tighter packing */
         }
         .main-nav a {
             color: var(--text-color-light);
             text-decoration: none;
-            padding: 8px 15px;
+            padding: 6px 12px; /* Adjusted padding */
             border-radius: 5px;
             font-weight: 500;
+            font-size: 0.9em; /* Slightly smaller font for menu */
             transition: background-color 0.3s ease, color 0.3s ease;
         }
         .main-nav a:hover, .main-nav a.active-nav {
@@ -175,7 +183,6 @@
             padding: 0; 
             text-align: left; 
             color: var(--text-color-light); 
-            /* IMPORTANT: Replace with your local hero image filename */
             background-image: url('Irwan_Djaja_Hero.png'); 
             background-size: cover;
             background-position: center;
@@ -340,6 +347,11 @@
             font-size: 0.8em;
             color: #777;
             margin-left: 5px;
+        }
+        .input-group input:disabled { 
+            background-color: #e9ecef;
+            opacity: 0.7;
+            cursor: not-allowed;
         }
 
 
@@ -555,6 +567,7 @@
             border-radius: 4px;
             color: var(--text-color-light);
             margin-left: 10px;
+            vertical-align: middle;
         }
         .case-study-item .free-badge {
             background-color: var(--success-text);
@@ -606,20 +619,24 @@
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .app-header {
-                flex-direction: column;
+                flex-direction: column; /* Stack header items */
                 padding: 15px;
+                align-items: center; /* Center items when stacked */
             }
             .header-left {
                 margin-bottom: 10px;
                 justify-content: center;
+                width: 100%; /* Allow cover to center */
             }
             .book-cover-img {
-                height: 100px;
-                margin-right: 0;
+                height: 100px; 
+                margin-right: 0; 
             }
             .header-center {
-                text-align: center;
+                text-align: center; /* Center title/author text */
                 margin-bottom: 15px;
+                width: 100%;
+                margin-left: 0; margin-right: 0; /* Remove horizontal margins */
             }
             .app-header h1 {
                 font-size: 1.4em;
@@ -631,22 +648,38 @@
                 font-size: 0.75em;
             }
             .header-right {
-                justify-content: center;
+                justify-content: center; /* Center auth link and icon */
+                width: 100%;
             }
             .header-right .auth-link {
                 font-size: 0.85em;
+                margin-right: 10px; /* Adjust margin */
             }
             .user-icon-placeholder {
                 width: 35px;
                 height: 35px;
             }
+
+            .main-nav ul {
+                flex-direction: column; /* Stack nav items */
+            }
+            .main-nav li {
+                margin: 5px 0; /* Adjust for stacked items */
+            }
+            .main-nav a {
+                font-size: 0.85em; /* Slightly smaller menu font on mobile */
+                padding: 8px 10px;
+            }
+
             .hero-section {
                 min-height: 250px; 
             }
             .hero-content-overlay {
                 padding: 20px;
-                margin-left: 2%;
-                margin-right: 2%;
+                margin-left: auto; /* Center overlay */
+                margin-right: auto;
+                max-width: 90%; /* Allow overlay to use more width */
+                text-align: center; /* Center text within overlay on mobile */
             }
             .hero-section h2 {
                 font-size: 1.8em;
@@ -672,17 +705,14 @@
             .header-center {
                 margin-bottom: 10px;
             }
-            .main-nav ul {
-                flex-direction: column;
-            }
-            .main-nav li {
-                margin: 5px 0;
+            .main-nav a {
+                font-size: 0.8em; /* Even smaller for very small screens */
             }
             .tab-navigation {
-                font-size: 0.9em;
+                font-size: 0.85em; /* Smaller tabs */
             }
             .tab-button {
-                padding: 8px 10px;
+                padding: 8px 8px; /* Tighter tab padding */
             }
             .hero-section {
                 min-height: 200px;
@@ -746,12 +776,12 @@
                     Explore valuation concepts, use interactive calculators, and deepen your understanding of how to
                     map, create, measure, and realize company value.
                 </p>
-                <h3>Key Features (Phase 5 Update):</h3>
+                <h3>Key Features (Phase 6 Update):</h3>
                 <ul>
-                    <li>Interactive Valuation Calculators (Free & Premium Mockups).</li>
-                    <li>Learning Center: Expanded Glossary, Detailed Methodology Summaries (Free/Premium Teasers), Indonesian Context.</li>
-                    <li>Video Tutorials: More specific placeholder video titles.</li>
-                    <li>Interactive Case Studies: More descriptive placeholders.</li>
+                    <li>Interactive Valuation Calculators (Free & Premium Mockups with input fields).</li>
+                    <li>Learning Center: Expanded Glossary, More Detailed Methodology Summaries (Free/Premium Teasers), Indonesian Context.</li>
+                    <li>Video Tutorials: More specific placeholder video titles & descriptions.</li>
+                    <li>Interactive Case Studies: More descriptive placeholders with outlined steps.</li>
                     <li>Pricing Page: Detailed tier descriptions.</li>
                 </ul>
                 <p>Navigate using the menu above to explore the available tools and resources.</p>
@@ -1040,6 +1070,14 @@
                         <label for="advDcfYears">Number of Projection Years:</label>
                         <input type="number" id="advDcfYears" placeholder="e.g., 5" disabled>
                     </div>
+                     <div class="input-group">
+                        <label for="advDcfRevenueStart">Starting Revenue ($):</label>
+                        <input type="number" id="advDcfRevenueStart" placeholder="e.g., 1000000" disabled>
+                    </div>
+                     <div class="input-group">
+                        <label for="advDcfGrowthRate">Revenue Growth Rate (% per year):</label>
+                        <input type="text" id="advDcfGrowthRate" placeholder="e.g., 10, 8, 6, 5, 5 (comma separated)" disabled>
+                    </div>
                     <button class="calculate-button premium-button" onclick="showPremiumMockupAlert('Advanced DCF Tool')">Access Tool (Premium)</button>
                     <div class="notes-source">
                         <h4>Notes & Source (from "Corporate Valuation"):</h4>
@@ -1058,14 +1096,14 @@
                     </div>
                     <div class="input-group">
                         <label for="evaNopat">NOPAT ($):</label>
-                        <input type="number" id="evaNopat" step="0.01" placeholder="From NOPLAT Calc" disabled>
+                        <input type="number" id="evaNopat" step="0.01" placeholder="From NOPLAT Calc or input" disabled>
                     </div>
                     <div class="input-group">
                         <label for="evaBoyic">Beginning of Year Invested Capital ($):</label>
                         <input type="number" id="evaBoyic" step="0.01" placeholder="e.g., 1000000" disabled>
                     </div>
                     <div class="input-group">
-                        <label for="evaWacc">WACC (decimal, from WACC Calc):</label>
+                        <label for="evaWacc">WACC (decimal, from WACC Calc or input):</label>
                         <input type="number" id="evaWacc" step="0.001" placeholder="e.g., 0.10" disabled>
                     </div>
                     <button class="calculate-button premium-button" onclick="showPremiumMockupAlert('EVA Calculator')">Calculate EVA (Premium)</button>
@@ -1078,12 +1116,13 @@
                 <div id="apvCalc" class="calculator-content calculator-section">
                     <h2>Adjusted Present Value (APV) Calculator <span class="premium-badge">★</span></h2>
                     <p class="description">Values a company by separating operating value from financing effects.</p>
+                    <p class="formula">APV = Value of Unlevered Firm + PV of Tax Shields</p>
                      <div class="premium-mockup-message">
                         <p>✨ The APV Calculator is a premium feature! ✨</p>
                         <p><a href="#" onclick="navigateTo('pricing', {currentTarget: document.querySelector('.main-nav a[onclick*=\'pricing\']')}); return false;">Upgrade to Premium</a> for access.</p>
                     </div>
                     <div class="input-group">
-                        <label for="apvUnleveredFCF">PV of Unlevered Equity FCF ($):</label>
+                        <label for="apvUnleveredFCF">PV of Unlevered Firm's FCF ($):</label>
                         <input type="number" id="apvUnleveredFCF" step="0.01" placeholder="e.g., 500000" disabled>
                     </div>
                     <div class="input-group">
@@ -1099,14 +1138,16 @@
                 </div>
                 <div id="evEbitCalc" class="calculator-content calculator-section">
                     <h2>EV/EBIT Multiple Calculator <span class="premium-badge">★</span></h2>
-                    <p class="description">Calculates Enterprise Value to EBIT multiple.</p>
+                    <p class="description">Calculates Enterprise Value to EBIT multiple and implied EV.</p>
+                    <p class="formula">EV/EBIT Multiple = EV / EBIT</p>
                      <div class="premium-mockup-message">
                         <p>✨ The EV/EBIT Calculator is a premium feature! ✨</p>
                         <p><a href="#" onclick="navigateTo('pricing', {currentTarget: document.querySelector('.main-nav a[onclick*=\'pricing\']')}); return false;">Upgrade to Premium</a> for access.</p>
                     </div>
                     <div class="input-group">
-                        <label for="evEbitEV">Enterprise Value ($):</label> <input type="number" id="evEbitEV" placeholder="e.g., 1000000" disabled>
-                        <label for="evEbitEBIT">EBIT ($):</label> <input type="number" id="evEbitEBIT" placeholder="e.g., 100000" disabled>
+                        <label for="evEbitEV">Enterprise Value ($) (Optional, for ratio calc):</label> <input type="number" id="evEbitEV" placeholder="e.g., 1000000" disabled>
+                        <label for="evEbitEBIT">Company's EBIT ($):</label> <input type="number" id="evEbitEBIT" placeholder="e.g., 100000" disabled>
+                        <label for="evEbitMultiple">Comparable EV/EBIT Multiple (Optional, for value calc):</label> <input type="number" id="evEbitMultiple" placeholder="e.g., 10" disabled>
                     </div>
                     <button class="calculate-button premium-button" onclick="showPremiumMockupAlert('EV/EBIT Calculator')">Calculate (Premium)</button>
                     <div class="notes-source">
@@ -1117,14 +1158,16 @@
                 </div>
                 <div id="evEbitdaCalc" class="calculator-content calculator-section">
                     <h2>EV/EBITDA Multiple Calculator <span class="premium-badge">★</span></h2>
-                    <p class="description">Calculates Enterprise Value to EBITDA multiple.</p>
+                    <p class="description">Calculates Enterprise Value to EBITDA multiple and implied EV.</p>
+                     <p class="formula">EV/EBITDA Multiple = EV / EBITDA</p>
                     <div class="premium-mockup-message">
                         <p>✨ The EV/EBITDA Calculator is a premium feature! ✨</p>
                         <p><a href="#" onclick="navigateTo('pricing', {currentTarget: document.querySelector('.main-nav a[onclick*=\'pricing\']')}); return false;">Upgrade to Premium</a> for access.</p>
                     </div>
                      <div class="input-group">
-                        <label for="evEbitdaEV">Enterprise Value ($):</label> <input type="number" id="evEbitdaEV" placeholder="e.g., 1200000" disabled>
-                        <label for="evEbitdaEBITDA">EBITDA ($):</label> <input type="number" id="evEbitdaEBITDA" placeholder="e.g., 150000" disabled>
+                        <label for="evEbitdaEV">Enterprise Value ($) (Optional, for ratio calc):</label> <input type="number" id="evEbitdaEV" placeholder="e.g., 1200000" disabled>
+                        <label for="evEbitdaEBITDA">Company's EBITDA ($):</label> <input type="number" id="evEbitdaEBITDA" placeholder="e.g., 150000" disabled>
+                        <label for="evEbitdaMultiple">Comparable EV/EBITDA Multiple (Optional, for value calc):</label> <input type="number" id="evEbitdaMultiple" placeholder="e.g., 8" disabled>
                     </div>
                     <button class="calculate-button premium-button" onclick="showPremiumMockupAlert('EV/EBITDA Calculator')">Calculate (Premium)</button>
                     <div class="notes-source">
@@ -1135,14 +1178,16 @@
                 </div>
                 <div id="psCalc" class="calculator-content calculator-section">
                     <h2>P/S Ratio Calculator <span class="premium-badge">★</span></h2>
-                    <p class="description">Calculates Price-to-Sales ratio.</p>
+                    <p class="description">Calculates Price-to-Sales ratio and implied Equity Value.</p>
+                    <p class="formula">P/S Ratio = Market Price per Share / Sales per Share</p>
                     <div class="premium-mockup-message">
                         <p>✨ The P/S Ratio Calculator is a premium feature! ✨</p>
                         <p><a href="#" onclick="navigateTo('pricing', {currentTarget: document.querySelector('.main-nav a[onclick*=\'pricing\']')}); return false;">Upgrade to Premium</a> for access.</p>
                     </div>
                     <div class="input-group">
-                        <label for="psPrice">Market Price per Share ($):</label> <input type="number" id="psPrice" placeholder="e.g., 20" disabled>
-                        <label for="psSPS">Sales per Share ($):</label> <input type="number" id="psSPS" placeholder="e.g., 10" disabled>
+                        <label for="psPrice">Market Price per Share ($) (Optional, for ratio calc):</label> <input type="number" id="psPrice" placeholder="e.g., 20" disabled>
+                        <label for="psSPS">Company's Sales per Share ($):</label> <input type="number" id="psSPS" placeholder="e.g., 10" disabled>
+                         <label for="psMultiple">Comparable P/S Multiple (Optional, for value calc):</label> <input type="number" id="psMultiple" placeholder="e.g., 2" disabled>
                     </div>
                     <button class="calculate-button premium-button" onclick="showPremiumMockupAlert('P/S Ratio Calculator')">Calculate (Premium)</button>
                     <div class="notes-source">
@@ -1153,14 +1198,16 @@
                 </div>
                  <div id="evsCalc" class="calculator-content calculator-section">
                     <h2>EV/Sales Ratio Calculator <span class="premium-badge">★</span></h2>
-                    <p class="description">Calculates Enterprise Value to Sales ratio.</p>
+                    <p class="description">Calculates Enterprise Value to Sales ratio and implied EV.</p>
+                    <p class="formula">EV/Sales Ratio = EV / Total Sales</p>
                     <div class="premium-mockup-message">
                         <p>✨ The EV/Sales Calculator is a premium feature! ✨</p>
                         <p><a href="#" onclick="navigateTo('pricing', {currentTarget: document.querySelector('.main-nav a[onclick*=\'pricing\']')}); return false;">Upgrade to Premium</a> for access.</p>
                     </div>
                     <div class="input-group">
-                        <label for="evsEV">Enterprise Value ($):</label> <input type="number" id="evsEV" placeholder="e.g., 1000000" disabled>
-                        <label for="evsSales">Total Sales ($):</label> <input type="number" id="evsSales" placeholder="e.g., 500000" disabled>
+                        <label for="evsEV">Enterprise Value ($) (Optional, for ratio calc):</label> <input type="number" id="evsEV" placeholder="e.g., 1000000" disabled>
+                        <label for="evsSales">Company's Total Sales ($):</label> <input type="number" id="evsSales" placeholder="e.g., 500000" disabled>
+                        <label for="evsMultiple">Comparable EV/Sales Multiple (Optional, for value calc):</label> <input type="number" id="evsMultiple" placeholder="e.g., 1.5" disabled>
                     </div>
                     <button class="calculate-button premium-button" onclick="showPremiumMockupAlert('EV/Sales Calculator')">Calculate (Premium)</button>
                     <div class="notes-source">
@@ -1171,14 +1218,16 @@
                 </div>
                  <div id="pbCalc" class="calculator-content calculator-section">
                     <h2>P/B Ratio Calculator <span class="premium-badge">★</span></h2>
-                    <p class="description">Calculates Price-to-Book ratio.</p>
+                    <p class="description">Calculates Price-to-Book ratio and implied Equity Value.</p>
+                     <p class="formula">P/B Ratio = Market Price per Share / Book Value per Share (BVPS)</p>
                     <div class="premium-mockup-message">
                         <p>✨ The P/B Ratio Calculator is a premium feature! ✨</p>
                         <p><a href="#" onclick="navigateTo('pricing', {currentTarget: document.querySelector('.main-nav a[onclick*=\'pricing\']')}); return false;">Upgrade to Premium</a> for access.</p>
                     </div>
                     <div class="input-group">
-                        <label for="pbPrice">Market Price per Share ($):</label> <input type="number" id="pbPrice" placeholder="e.g., 30" disabled>
-                        <label for="pbBVPS">Book Value per Share ($) (from BVPS Calc):</label> <input type="number" id="pbBVPS" placeholder="e.g., 15" disabled>
+                        <label for="pbPrice">Market Price per Share ($) (Optional, for ratio calc):</label> <input type="number" id="pbPrice" placeholder="e.g., 30" disabled>
+                        <label for="pbBVPS">Company's Book Value per Share ($) (from BVPS Calc or input):</label> <input type="number" id="pbBVPS" placeholder="e.g., 15" disabled>
+                        <label for="pbMultiple">Comparable P/B Multiple (Optional, for value calc):</label> <input type="number" id="pbMultiple" placeholder="e.g., 1.2" disabled>
                     </div>
                     <button class="calculate-button premium-button" onclick="showPremiumMockupAlert('P/B Ratio Calculator')">Calculate (Premium)</button>
                     <div class="notes-source">
@@ -1218,16 +1267,16 @@
                 <p>Understanding intrinsic value based on future economic benefits. (Based on Chapters 3-13)</p>
                 <ul>
                     <li><strong>Discounted Cash Flow (DCF):</strong> 
-                        <br><em>Free Teaser:</em> The DCF method values a company based on the present value of its expected future free cash flows. It involves forecasting cash flows, determining a discount rate (WACC), and calculating a terminal value.
-                        <br><em>Premium:</em> Detailed step-by-step guide (Historical Analysis, Projections, Discount Rate, Terminal Value, Sensitivity Analysis - Ch 4-11), advanced adjustments, and case study applications.
+                        <br><em>Free Teaser:</em> The DCF method values a company based on the present value of its expected future free cash flows. It involves forecasting cash flows, determining a discount rate (WACC), and calculating a terminal value. Core steps include historical analysis (Ch 5), projecting performance (Ch 6), calculating cost of capital (Ch 7), and determining terminal value (Ch 9).
+                        <br><em>Premium:</em> Detailed step-by-step guide (Historical Analysis, Projections, Discount Rate, Terminal Value, Sensitivity Analysis - Ch 4-11), advanced adjustments for NOPLAT and Invested Capital, multi-stage DDM (Ch 8), and case study applications (Ch 11).
                     </li>
                     <li><strong>Economic Value Added (EVA):</strong>
-                        <br><em>Free Teaser:</em> EVA measures the value created by a company in excess of its required return on capital. A positive EVA indicates value creation.
-                        <br><em>Premium:</em> In-depth calculation nuances, equity equivalent adjustments, and strategic implications for performance management (Ch 12).
+                        <br><em>Free Teaser:</em> EVA measures the value created by a company in excess of its required return on capital. A positive EVA indicates value creation, while a negative EVA suggests value destruction.
+                        <br><em>Premium:</em> In-depth calculation nuances, equity equivalent adjustments, relationship between EVA and FCFF, and strategic implications for performance management (Ch 12).
                     </li>
                     <li><strong>Adjusted Present Value (APV):</strong>
-                        <br><em>Free Teaser:</em> The APV method separates the value of an all-equity financed firm from the value of financing side effects (like tax shields from debt).
-                        <br><em>Premium:</em> Application in highly leveraged transactions, changing capital structures, and detailed calculation steps (Ch 13).
+                        <br><em>Free Teaser:</em> The APV method separates the value of an all-equity financed firm from the value of financing side effects (like tax shields from debt). It's useful when the capital structure is expected to change significantly.
+                        <br><em>Premium:</em> Application in highly leveraged transactions (LBOs), valuing tax shields, and detailed calculation steps for unlevered firm value and financing effects (Ch 13).
                     </li>
                 </ul>
 
@@ -1235,8 +1284,8 @@
                 <p>Valuing companies by comparing them to peers using market multiples. (Based on Chapters 14-20)</p>
                 <ul>
                     <li><strong>Introduction to Multiples:</strong> 
-                        <br><em>Free Teaser:</em> Understanding common multiples like P/E, EV/EBITDA, P/S, P/B and their basic interpretation.
-                        <br><em>Premium:</em> Detailed analysis of each multiple (P/E - Ch 15, EV/EBIT - Ch 16, EV/EBITDA - Ch 17, P/S - Ch 18, EV/S - Ch 19, P/B - Ch 20), choosing appropriate comparables, data normalization techniques, and addressing industry-specific multiple considerations.
+                        <br><em>Free Teaser:</em> Understanding common multiples like Price-to-Earnings (P/E), Enterprise Value to EBITDA (EV/EBITDA), Price-to-Sales (P/S), Price-to-Book (P/B) and their basic interpretation. The importance of comparing "apples to apples".
+                        <br><em>Premium:</em> Detailed analysis of each multiple (P/E - Ch 15, EV/EBIT - Ch 16, EV/EBITDA - Ch 17, P/S - Ch 18, EV/S - Ch 19, P/B - Ch 20), choosing appropriate comparable companies (CoCo) and transactions (CoTrans), data normalization techniques (adjusting for non-recurring items, accounting differences), and addressing industry-specific multiple considerations.
                     </li>
                 </ul>
 
@@ -1244,27 +1293,28 @@
                 <p>Valuing managerial flexibility and strategic opportunities embedded in projects or companies. (Based on Chapters 21-23)</p>
                 <ul>
                     <li><strong>Basics of Options:</strong> 
-                        <br><em>Free Teaser:</em> Understanding call options, put options, and the key factors that determine an option's value.
-                        <br><em>Premium:</em> Applying option pricing models (Binomial, Black-Scholes) to real assets, valuing options to delay, expand, or abandon projects, and practical challenges (Ch 23).
+                        <br><em>Free Teaser:</em> Understanding call options, put options, and the key factors that determine an option's value (underlying asset value, strike price, time to expiration, volatility, risk-free rate).
+                        <br><em>Premium:</em> Applying option pricing models (Binomial trees - Ch 21, Black-Scholes - Ch 21) to real assets, valuing options to delay (Ch 23), expand (Ch 23), or abandon projects (Ch 23), and discussing the practical challenges and limitations of real option analysis.
                     </li>
                 </ul>
 
                 <h4>Asset-Based Valuation <span class="case-badge free-badge" style="font-size:0.7em;">Free</span></h4>
                 <p>Valuation based on the fair market value of a company's net assets, often used for liquidations or holding companies. (Based on Chapter 24)</p>
                 <ul>
-                    <li>Liquidation Value vs. Going Concern Value.</li>
-                    <li>Adjusted Book Value Method: Steps and considerations.</li>
-                    <li>Replacement Value Method: When and how to apply.</li>
+                    <li>Liquidation Value Method: Concept and application.</li>
+                    <li>Adjusted Book Value (Realisable Asset) Method: Steps and considerations for asset adjustments.</li>
+                    <li>Replacement Value Method: When and how to apply, and its limitations.</li>
                 </ul>
 
                 <h3>Indonesian Context: SPI & OJK Guidelines <span class="case-badge free-badge" style="font-size:0.7em;">Free</span></h3>
                 <p>Understanding the valuation landscape in Indonesia. (Based on Chapters 26-27)</p>
                 <ul>
-                    <li>Overview of Standar Penilaian Indonesia (SPI) for Business Valuation (SPI 330).</li>
-                    <li>Key principles from Kode Etik Penilai Indonesia (KEPI) - Integrity, Objectivity, Competence.</li>
-                    <li>Bapepam-LK (OJK) guidelines for valuations in the capital market (Peraturan IX.E.1, IX.E.2, VIII.C.3).</li>
-                    <li>Concept of Nilai Pasar Wajar (Fair Market Value) in the Indonesian context.</li>
-                    <li>Requirements for valuation reports and valuers in Indonesia.</li>
+                    <li>Overview of Standar Penilaian Indonesia (SPI) for Business Valuation (SPI 330 - Penilaian Bisnis).</li>
+                    <li>Key principles from Kode Etik Penilai Indonesia (KEPI) - Integrity, Objectivity, Competence, Confidentiality, Professional Behavior.</li>
+                    <li>Bapepam-LK (OJK) guidelines for valuations in the capital market (e.g., Peraturan VIII.C.3 - Pedoman Penilaian dan Penyajian Laporan Penilaian Usaha di Pasar Modal).</li>
+                    <li>Concept of Nilai Pasar Wajar (Fair Market Value) as defined by SPI and OJK.</li>
+                    <li>Requirements for valuation reports and the role of Penilai Usaha (Business Valuer) in Indonesia.</li>
+                    <li>Challenges and future of valuation practice in Indonesia (Chapter 28).</li>
                 </ul>
                 <div class="premium-mockup-message" style="margin-top: 20px;">
                      <p>Unlock in-depth articles, advanced guides, and full methodology explanations with our Premium Subscription!</p>
@@ -1282,18 +1332,23 @@
                     <li><strong>Video:</strong> P/E Ratio Explained - How to Calculate and Interpret (Chapter 15)</li>
                     <li><strong>Video:</strong> Dividend Discount Model (DDM) Basics - Constant Growth (Chapter 8)</li>
                     <li><strong>Video:</strong> Introduction to WACC - Why it Matters (Chapter 7)</li>
+                    <li><strong>Video:</strong> Mapping, Creating, Measuring, and Realizing Value - An Overview (Book's Core Theme)</li>
                 </ul>
 
                 <h4>Premium Video Library (Mockup - Examples):</h4>
                 <ul>
                     <li><strong>Video:</strong> Step-by-Step DCF Valuation Case Study (Like PT Karang Herbal - Chapter 11)</li>
-                    <li><strong>Video:</strong> WACC Deep Dive - Calculating Each Component (Cost of Equity, Debt, Weights - Chapter 7)</li>
+                    <li><strong>Video:</strong> WACC Deep Dive - Calculating Each Component (Cost of Equity, Debt, Weights - Chapter 7)
+                        <ul><li>Sub-video: Calculating Beta (Historical, Comparable Company Method - Ch 7)</li></ul>
+                    </li>
                     <li><strong>Video:</strong> Relative Valuation in Practice - Selecting Comparables & Adjusting Multiples (Chapter 14)</li>
                     <li><strong>Video:</strong> Valuing Growth Companies - Techniques and Challenges (Chapter 10)</li>
-                    <li><strong>Video:</strong> Introduction to Real Option Valuation Models - Valuing Flexibility (Chapters 22-23)</li>
+                    <li><strong>Video:</strong> Introduction to Real Option Valuation Models - Valuing Flexibility (Option to Delay, Expand, Abandon - Chapters 22-23)</li>
                     <li><strong>Video:</strong> Merger Valuation Case Study Breakdown - Synergies & Exchange Ratios (Inspired by Chapter 25)</li>
                     <li><strong>Video:</strong> Navigating Indonesian Valuation Standards (SPI) - Key Considerations for Professionals (Chapters 26-27)</li>
-                    <li><strong>Video:</strong> Advanced NOPLAT and Invested Capital Adjustments (Chapter 5)</li>
+                    <li><strong>Video:</strong> Advanced NOPLAT and Invested Capital Adjustments for DCF (Chapter 5)</li>
+                    <li><strong>Video:</strong> Terminal Value - Beyond Gordon Growth (Value Driver, Multiples - Chapter 9)</li>
+                    <li><strong>Video:</strong> Understanding and Applying EVA and APV (Chapters 12-13)</li>
                 </ul>
                  <div class="premium-mockup-message" style="margin-top:10px;">
                     <p>Access our complete library of expert-led video tutorials, including advanced topics and detailed case studies, by <a href="#" onclick="navigateTo('pricing', {currentTarget: document.querySelector('.main-nav a[onclick*=\'pricing\']')}); return false;">upgrading to Premium</a>!</p>
@@ -1311,8 +1366,19 @@
                         This case focuses on building basic revenue projections, estimating costs, understanding capital expenditures, and calculating a simple terminal value. 
                         Perfect for grasping the core DCF framework as outlined in the book.
                     </p>
-                    <p><em>(This interactive module will guide you through: 1. Revenue & Growth Assumptions, 2. Cost Structure & Margins, 3. Capital Expenditures & Working Capital Needs, 4. Determining a Discount Rate (WACC) - simplified approach, 5. Calculating Free Cash Flows, 6. Estimating Terminal Value using Gordon Growth, 7. Arriving at an Enterprise and Equity Value.)</em></p>
-                    <a href="#" class="view-case-button" onclick="alert('Basic Case Study Walkthrough coming soon! This will be an interactive module.'); return false;">Start Free Case Study</a>
+                    <p><strong>Steps you'll cover:</strong></p>
+                    <ol>
+                        <li>Understanding StartupTech's Business Model (Hypothetical).</li>
+                        <li>Projecting Revenues & Growth (Simple Assumptions).</li>
+                        <li>Estimating Key Costs & Margins.</li>
+                        <li>Forecasting Capital Expenditures & Working Capital Needs.</li>
+                        <li>Determining a Discount Rate (WACC) - Simplified Approach.</li>
+                        <li>Calculating Free Cash Flows (FCF) for 3-5 years.</li>
+                        <li>Estimating Terminal Value using Gordon Growth Model.</li>
+                        <li>Discounting FCFs and Terminal Value to arrive at Enterprise Value.</li>
+                        <li>Adjusting for Net Debt to find Equity Value.</li>
+                    </ol>
+                    <a href="#" class="view-case-button" onclick="alert('Basic Case Study Walkthrough coming soon! This will be an interactive module with input fields and explanations for each step.'); return false;">Start Free Case Study</a>
                     <p class="source-ref">Based on DCF principles from Chapters 4-11.</p>
                 </div>
 
@@ -1322,10 +1388,19 @@
                         Tackle a more complex scenario involving the merger of two pharmaceutical companies. This advanced case study, inspired by the PT Kalbe Farma example in the book (Chapter 25), 
                         will require you to apply multiple valuation methods (DCF and Relative Valuation for standalone entities), analyze and quantify potential synergies, and determine a fair share exchange ratio.
                     </p>
-                    <p><em>(Premium interactive module will include: 1. Standalone DCF Valuation of Acquirer & Target, 2. Relative Valuation of Acquirer & Target using industry comparables, 3. Identification & Quantification of Operating and Financial Synergies, 4. Pro-forma Combined Company Projections, 5. Determining an appropriate Share Exchange Ratio considering control premiums, 6. Accretion/Dilution Analysis for EPS.)</em></p>
+                    <p><strong>Premium module will include:</strong></p>
+                    <ol>
+                        <li>Detailed Standalone DCF Valuation of Acquirer & Target (including multi-stage growth).</li>
+                        <li>Relative Valuation of Acquirer & Target using industry comparables (P/E, EV/EBITDA).</li>
+                        <li>Identification & Quantification of Operating and Financial Synergies.</li>
+                        <li>Building Pro-forma Combined Company Projections.</li>
+                        <li>Determining an appropriate Share Exchange Ratio considering control premiums and negotiation ranges.</li>
+                        <li>Accretion/Dilution Analysis for Earnings Per Share (EPS).</li>
+                        <li>Sensitivity analysis on key synergy and valuation assumptions.</li>
+                    </ol>
                      <div class="premium-mockup-message" style="font-size: 0.9em; padding: 10px; margin-top:10px;">
                         <p>✨ This Advanced Case Study is a premium feature! ✨</p>
-                        <p><a href="#" onclick="navigateTo('pricing', {currentTarget: document.querySelector('.main-nav a[onclick*=\'pricing\']')}); return false;">Upgrade to Premium</a> for full access to this and other detailed case studies.</p>
+                        <p><a href="#" onclick="navigateTo('pricing', {currentTarget: document.querySelector('.main-nav a[onclick*=\'pricing\']')}); return false;">Upgrade to Premium</a> for full access to this and other detailed case studies with interactive data inputs and scenario modeling.</p>
                     </div>
                     <a href="#" class="view-case-button premium" onclick="showPremiumMockupAlert('Advanced PharmaCombine Case Study'); return false;">Access Premium Case Study</a>
                     <p class="source-ref">Inspired by concepts in Chapter 25 (Merger Valuation) and comprehensive DCF/Relative Valuation techniques from Parts III & IV.</p>
